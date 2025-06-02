@@ -165,11 +165,45 @@ texas_clean |> arrange(desc(h_mean)) |> head()
 # Lowest hourly wage
 texas_clean |> arrange(h_mean) |> head()
 ```
+```{r}
+houston_clean <- houston |>
+  clean_names() |>  
+  mutate(
+    hourly_mean = as.numeric(hourly_mean_wage),
+    annual_mean = as.numeric(gsub(",", "", annual_mean_wage_2))
+  ) |>
+  filter(!is.na(hourly_mean))
+
+# Highest 5 paid
+houston_clean |> arrange(desc(hourly_mean)) |> head(5)
+
+# Lowest 5 paid
+houston_clean |> arrange(hourly_mean) |> head(5)
+```
 
     2) The "All Occupations" entry summarizes the Texas workforce. Find the average annual salary for all occupations. 
     Count how many occupations are below that average and how many above? 
     How could that be a story?
-    
+  
+```{r}
+ texas_clean <- texas |>
+  filter(!a_mean %in% c("*", "#")) |>   
+  mutate(
+    a_mean = as.numeric(gsub(",", "", a_mean))
+  )
+
+texas_avg_salary <- texas_clean |>
+  filter(occ_title == "All Occupations") |>
+  pull(a_mean)
+
+above_avg <- sum(texas_clean$a_mean > texas_avg_salary, na.rm = TRUE)
+below_avg <- sum(texas_clean$a_mean < texas_avg_salary, na.rm = TRUE)
+
+c(above_avg = above_avg, below_avg = below_avg)
+
+```
+
+  
     3) Filter for journalists. 
     --Apply Filter to OCC_Code. 
     --Select Filter by Condition. 
