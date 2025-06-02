@@ -581,24 +581,6 @@ average but very low employment</p>
 ##  9 11-9013  Farmers, …                40.9              37.3    3.62          70
 ## 10 19-1012  Food Scie…                42.1              31.5   10.6           70</code></pre>
 </div>
-<div id="ceo-by-industry" class="section level1">
-<h1>6. CEO by industry</h1>
-<pre class="r"><code># Step 1: Filter for Chief Executives
-ceo_houston &lt;- houston |&gt; 
-  filter(str_detect(occupation_soc_code, regex(&quot;chief executive&quot;, ignore_case = TRUE))) |&gt; 
-  mutate(
-    hourly_mean = as.numeric(hourly_mean_wage)
-  )
-
-# Print result
-ceo_houston</code></pre>
-<pre><code>## # A tibble: 1 × 7
-##   occupation_soc_code        employment_1 hourly_mean_wage annual_mean_wage_2
-##   &lt;chr&gt;                      &lt;chr&gt;        &lt;chr&gt;            &lt;chr&gt;             
-## 1 Chief Executives (11-1011) 1930.0       161.29           335480.0          
-## # ℹ 3 more variables: employment_per_1_000_jobs &lt;chr&gt;, soc_code &lt;chr&gt;,
-## #   hourly_mean &lt;dbl&gt;</code></pre>
-</div>
 
 
 
