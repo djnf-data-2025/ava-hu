@@ -28,10 +28,16 @@ You will learn to how to retrieve and analyze employment and regional GDP data f
 
 # Load software libraries
 ```{r}
-#install.packages("tidyverse")
-#install.packages("janitor")
-#install.packages("readxl")
-#install.packages("rvest")
+install.packages("tidyverse")
+install.packages("janitor")
+install.packages("readxl")
+install.packages("rvest")
+
+
+```
+
+
+```{r}
 library(tidyverse)
 library(janitor)
 library(readxl)
@@ -47,18 +53,13 @@ I downloaded texas and houston
 
 ```{r}
 
-# 
-texas<- read.csv("../data/texas_oes.csv") |> 
+ 
+texas<- read.csv("data/texas_oes.csv") |> 
      clean_names()
 
 #Area: Houston-Pasadena-The Woodlands, TX Period: May 2024
-houston <- read_excel("../data/houston_OES_Report.xlsx", skip=5) |> 
+houston <- read_excel("data/houston_OES_Report.xlsx", skip=5) |> 
    clean_names()
-
-
-
-# data <- read_excel("../data/2024-12-Revenue.xlsx", skip=2) |> 
-#     clean_names()
 
 
 
@@ -152,7 +153,19 @@ Notes:
 # More questions
 
     1) Sort the sheet to find the highest and lowest hourly wage for Texas and then for Houston. Take a look at the list. What surprised you?
-    
+```{r}
+# Clean h_mean column
+texas_clean <- texas |>
+  mutate(h_mean = as.numeric(h_mean)) |>  # convert, coercing "*" to NA
+  filter(!is.na(h_mean))                  # drop NA values
+
+# Highest hourly wage
+texas_clean |> arrange(desc(h_mean)) |> head()
+
+# Lowest hourly wage
+texas_clean |> arrange(h_mean) |> head()
+```
+
     2) The "All Occupations" entry summarizes the Texas workforce. Find the average annual salary for all occupations. 
     Count how many occupations are below that average and how many above? 
     How could that be a story?
