@@ -3,19 +3,36 @@ title: "Pitch-Ava Hu - Houston Chronicle"
 output: html_document
 date: "2025-06-01"
 ---
+
 # Pitch: How Houston’s Job Market Deviates From the Texas Norm
 
 Using occupational wage and employment data, I analyzed how Houston's job market compares with the rest of Texas.I will identify which occupations earn significantly more or less in Houston than the state average, which low-paying jobs dominate Houston’s employment, and which niche occupations offer high pay but employ very few people.
 
-# My findings: 
-- High-skilled or managerial roles are some of the most underpaid occupations in Houston, compared to the rest of Texas. Chief Executives, Neurologists, Lawyers, and Marketing Managers all earn significantly less in Houston than the statewide average.
+# My findings:
 
-- Occupations that earn significantly more in Houston are medical roles. General Internal Medicine Physicians, Psychiatrists, Radiologists, and Pathologists see some of the biggest wage premiums in Houston. 
+-   High-skilled or managerial roles are some of the most underpaid occupations in Houston, compared to the rest of Texas. Chief Executives, Neurologists, Lawyers, and Marketing Managers all earn significantly less in Houston than the statewide average.
 
-- Food preparation, cleaning and maintenance, and healthcare support roles pay less than the state average, yet make up a huge share of Houston’s workforce.
+-   Occupations that earn significantly more in Houston are medical roles. General Internal Medicine Physicians, Psychiatrists, Radiologists, and Pathologists see some of the biggest wage premiums in Houston.
 
--Rail Transportation Workers, Hydrologic Technicians, and Craft Artists—pay significantly more than the state average but employ very few people. 
+-   Food preparation, cleaning and maintenance, and healthcare support roles pay less than the state average, yet make up a huge share of Houston’s workforce.
 
+-Rail Transportation Workers, Hydrologic Technicians, and Craft Artists—pay significantly more than the state average but employ very few people.
+
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(rvest)
+
+texas<- read.csv("data/texas_oes.csv") |> 
+     clean_names()
+
+houston <- read_excel("data/houston_OES_Report.xlsx", skip=5) |> 
+   clean_names()
+
+
+```
 
 # 1. Occupation compare between Houston and Texas overall
 
@@ -51,6 +68,7 @@ houston_below_texas <- wage_compare |>
 print(houston_below_texas)
 
 ```
+
 # 2. Top 10 largest underpayment gaps
 
 ```{r}
@@ -77,7 +95,9 @@ top10_houston_above_texas <- wage_compare |>
 print(top10_houston_above_texas)
 
 ```
+
 # 4. Which low-wage occupations have the highest employment in Houston?
+
 food preparation, retail, and personal care
 
 ```{r}
@@ -96,7 +116,8 @@ top10_low_paid_high_employment <- wage_compare |>
 print(top10_low_paid_high_employment)
 ```
 
-# 5. Houston niche highpay 
+# 5. Houston niche highpay
+
 Top 10 occupations in Houston with higher wages than the Texas average but very low employment
 
 ```{r}
