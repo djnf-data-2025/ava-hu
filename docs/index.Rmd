@@ -4,6 +4,10 @@ output: html_document
 date: "2025-06-02"
 ---
 
+
+# links
+  https://en.as.com/latest_news/how-much-do-construction-workers-earn-in-texas-n/
+  
 # Pitch: How Houston’s Job Market Deviates From the Texas Norm
 
 Using occupational wage and employment data, I analyzed how Houston's job market compares with the rest of Texas.I will identify which occupations earn significantly more or less in Houston than the state average, which low-paying jobs dominate Houston’s employment, and which niche occupations offer high pay but employ very few people.
