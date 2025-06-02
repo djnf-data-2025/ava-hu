@@ -1,7 +1,7 @@
 ---
 title: "Pitch-Ava Hu - Houston Chronicle"
 output: html_document
-date: "2025-06-01"
+date: "2025-06-02"
 ---
 
 # Pitch: How Houston’s Job Market Deviates From the Texas Norm
@@ -25,12 +25,11 @@ library(janitor)
 library(readxl)
 library(rvest)
 
-texas<- read.csv("data/texas_oes.csv") |> 
+texas<- read.csv("../data/texas_oes.csv") |> 
      clean_names()
 
-houston <- read_excel("data/houston_OES_Report.xlsx", skip=5) |> 
+houston <- read_excel("../data/houston_OES_Report.xlsx", skip=5) |> 
    clean_names()
-
 
 ```
 
@@ -128,10 +127,27 @@ top10_high_paid_low_employment <- wage_compare |>
     employment = as.numeric(employment_1)
   ) |> 
   filter(!is.na(employment)) |> 
-  arrange(employment) |>  # 从小到大
+  arrange(employment) |>  
   distinct(soc_code, .keep_all = TRUE) |> 
   slice(1:10) |> 
   select(soc_code, occ_title, hourly_mean_houston, hourly_mean_texas, wage_gap, employment)
 
 print(top10_high_paid_low_employment)
 ```
+
+# 6. CEO by industry
+
+```{r}
+
+# Step 1: Filter for Chief Executives
+ceo_houston <- houston |> 
+  filter(str_detect(occupation_soc_code, regex("chief executive", ignore_case = TRUE))) |> 
+  mutate(
+    hourly_mean = as.numeric(hourly_mean_wage)
+  )
+
+# Print result
+ceo_houston
+
+```
+
