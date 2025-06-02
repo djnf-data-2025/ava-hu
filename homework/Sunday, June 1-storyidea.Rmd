@@ -135,19 +135,4 @@ top10_high_paid_low_employment <- wage_compare |>
 print(top10_high_paid_low_employment)
 ```
 
-# 6. CEO by industry
-
-```{r}
-
-# Step 1: Filter for Chief Executives
-ceo_houston <- houston |> 
-  filter(str_detect(occupation_soc_code, regex("chief executive", ignore_case = TRUE))) |> 
-  mutate(
-    hourly_mean = as.numeric(hourly_mean_wage)
-  )
-
-# Print result
-ceo_houston
-
-```
 
