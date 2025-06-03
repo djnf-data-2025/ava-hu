@@ -31,6 +31,11 @@ How – Using wage and GDP data to show where workers are falling behind
 
 
 ## What are the visual possibilities?
+OEWS: 
+- Top 10 largest underpayment gaps
+- Top 10 largest above payment gaps
+
+
 To show how Houston’s economy is changing over time, I will use Bureau of Economic Analysis (BEA) data, GDP, on county-level employment by industry. I’ll highlight the decline of durable-goods manufacturing and energy jobs, and the rise of health care, education, and hospitality.
 
 I will also include two choropleth maps to show how Houston fits into the state’s economic landscape. The first shows average annual earnings by city in Texas, based on the most recent BEA personal income data. The second map shows total county-level GDP, showing comparison between economic output and compensation. Together, these maps show whether regions that produce more also pay more and where Houston falls in that relationship.
