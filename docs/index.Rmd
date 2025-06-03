@@ -4,23 +4,52 @@ output: html_document
 date: "2025-06-02"
 ---
 
-
-# links
-  https://en.as.com/latest_news/how-much-do-construction-workers-earn-in-texas-n/
-  
 # Pitch: How Houston’s Job Market Deviates From the Texas Norm
 
-Using occupational wage and employment data, I analyzed how Houston's job market compares with the rest of Texas.I will identify which occupations earn significantly more or less in Houston than the state average, which low-paying jobs dominate Houston’s employment, and which niche occupations offer high pay but employ very few people.
+[avahu\@berkeley.edu](mailto:avahu@berkeley.edu){.email} \| June 2, 2025
 
-# My findings:
+## what is this story about?
 
--   High-skilled or managerial roles are some of the most underpaid occupations in Houston, compared to the rest of Texas. Chief Executives, Neurologists, Lawyers, and Marketing Managers all earn significantly less in Houston than the statewide average.
+This story uses occupational wage data from the OEWS program and GDP data from the BEA to examine how Houston’s job market differs from the rest of Texas. It highlights which occupations are underpaid in Houston, which low-wage jobs are growing, and how the city’s economy has shifted away from high-paying energy jobs over the past decade.
 
--   Occupations that earn significantly more in Houston are medical roles. General Internal Medicine Physicians, Psychiatrists, Radiologists, and Pathologists see some of the biggest wage premiums in Houston.
+## why tell this story NOW？
+Houston is projected to add over 70,000 jobs in 2025, according to the Greater Houston Partnership’s employment forecast, but many of those will be in sectors that already pay below the state average.
 
--   Food preparation, cleaning and maintenance, and healthcare support roles pay less than the state average, yet make up a huge share of Houston’s workforce.
+## Six things (5W and H) you learned about this story:
+Who – Houston workers in sectors like food service, health care support, and cleaning
+What – These jobs are growing, but most pay less than the Texas average
+When – The 2025 forecast shows these sectors will expand the most
+Where – Primarily Harris County and surrounding metro counties
+Why – The city has shifted away from high-paying industries like oil and gas, which has lost over 60,000 jobs
+How – Using wage and GDP data to show where workers are falling behind
 
--Rail Transportation Workers, Hydrologic Technicians, and Craft Artists—pay significantly more than the state average but employ very few people.
+## Data you will be using to inform the story:
+
+- OEWS occupational wage data for Texas and Houston
+- BEA GDP and personal income by county
+- Greater Houston Partnership’s 2024–2025 employment forecast
+
+
+## What are the visual possibilities?
+To show how Houston’s economy is changing over time, I will use Bureau of Economic Analysis (BEA) data, GDP, on county-level employment by industry. I’ll highlight the decline of durable-goods manufacturing and energy jobs, and the rise of health care, education, and hospitality.
+
+I will also include two choropleth maps to show how Houston fits into the state’s economic landscape. The first shows average annual earnings by city in Texas, based on the most recent BEA personal income data. The second map shows total county-level GDP, showing comparison between economic output and compensation. Together, these maps show whether regions that produce more also pay more and where Houston falls in that relationship.
+
+Early analysis shows that several high-skill occupations, including chief executives, neurologists, lawyers, and marketing managers, earn thousands less per year in Houston than elsewhere in Texas. These roles are typically associated with higher education and management experience but appear to be systematically undervalued in the local market.
+
+At the same time, many of Houston’s most common jobs — food prep workers, janitors, home health aides — pay below the Texas average. These positions make up a large share of the city’s workforce and are projected to expand in 2025, according to the Greater Houston Partnership’s employment forecast. This suggests a growing reliance on low-wage labor to drive the region’s job growth.
+
+Another focus is the long-term decline of energy jobs in Houston. Oil and gas companies have cut over 60,000 positions in the past decade. Oil remains central to Houston’s economy, but its share of employment is shrinking, replaced by lower-paying sectors like health care, retail, and hospitality. Despite oil production reaching record highs, those gains are no longer tied to job creation.
+
+
+## Estimated delivery
+
+The final product will be a series of data viz that show where wages in Houston fall behind, which jobs are growing or shrinking, and how the city’s labor market is changing. The goal is to make these patterns clear and grounded in the data.
+
+## How did you find this story? Summarize any previous coverage.
+The Greater Houston Partnership's 2024 employment forecast noted a shift toward low-wage job growth. Wage data shows a clear and persistent gap between Houston and the state average in many major sectors. Houston Chornicle's coverage of oil industry. 
+
+<https://en.as.com/latest_news/how-much-do-construction-workers-earn-in-texas-n/> <https://www.houston.org/news/rising-houston-projects-look-forward-2025-and-beyond> <https://www.houstonchronicle.com/business/article/jobs-report-us-employment-houston-economy-19747453.php> <https://www.houstonchronicle.com/news/investigations/article/orphan-oil-wells-plug-middleton-bill-edf-rrc-20232880.php> <https://data.bls.gov/oes/#/occGeo/One%20occupation%20for%20multiple%20geographical%20areas> <https://profrobwells.github.io/Visualizing_State_Local_Economy/WSJ_Merrill_GDP.html>
 
 
 ```{r}
@@ -138,5 +167,3 @@ top10_high_paid_low_employment <- wage_compare |>
 
 print(top10_high_paid_low_employment)
 ```
-
-
