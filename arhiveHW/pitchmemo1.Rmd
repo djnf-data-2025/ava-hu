@@ -8,16 +8,37 @@ date: "2025-06-02"
 
 [avahu\@berkeley.edu](mailto:avahu@berkeley.edu){.email} \| June 2, 2025
 
+## what is this story about?
+
+This story uses occupational wage data from the OEWS program and GDP data from the BEA to examine how Houston’s job market differs from the rest of Texas. It highlights which occupations are underpaid in Houston, which low-wage jobs are growing, and how the city’s economy has shifted away from high-paying energy jobs over the past decade.
+
+## why tell this story NOW？
 Houston is projected to add over 70,000 jobs in 2025, according to the Greater Houston Partnership’s employment forecast, but many of those will be in sectors that already pay below the state average.
 
-<iframe title="Top 10 Jobs Underpaid in Houston Compared to Texas" aria-label="Range Plot" id="datawrapper-chart-FVp3S" src="https://datawrapper.dwcdn.net/FVp3S/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1">
+## Six things (5W and H) you learned about this story:
+Who – Houston workers in sectors like food service, health care support, and cleaning
+What – These jobs are growing, but most pay less than the Texas average
+When – The 2025 forecast shows these sectors will expand the most
+Where – Primarily Harris County and surrounding metro counties
+Why – The city has shifted away from high-paying industries like oil and gas, which has lost over 60,000 jobs
+How – Using wage and GDP data to show where workers are falling behind
 
-</iframe>
+## Data you will be using to inform the story:
 
-```{=html}
-<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
-</script>
-```
+- OEWS occupational wage data for Texas and Houston
+- BEA GDP and personal income by county
+- Greater Houston Partnership’s 2024–2025 employment forecast
+
+
+## What are the visual possibilities?
+OEWS: 
+- Top 10 largest underpayment gaps
+- Top 10 largest above payment gaps
+
+
+To show how Houston’s economy is changing over time, I will use Bureau of Economic Analysis (BEA) data, GDP, on county-level employment by industry. I’ll highlight the decline of durable-goods manufacturing and energy jobs, and the rise of health care, education, and hospitality.
+
+I will also include two choropleth maps to show how Houston fits into the state’s economic landscape. The first shows average annual earnings by city in Texas, based on the most recent BEA personal income data. The second map shows total county-level GDP, showing comparison between economic output and compensation. Together, these maps show whether regions that produce more also pay more and where Houston falls in that relationship.
 
 Early analysis shows that several high-skill occupations, including chief executives, neurologists, lawyers, and marketing managers, earn thousands less per year in Houston than elsewhere in Texas. These roles are typically associated with higher education and management experience but appear to be systematically undervalued in the local market.
 
@@ -25,9 +46,16 @@ At the same time, many of Houston’s most common jobs — food prep workers, ja
 
 Another focus is the long-term decline of energy jobs in Houston. Oil and gas companies have cut over 60,000 positions in the past decade. Oil remains central to Houston’s economy, but its share of employment is shrinking, replaced by lower-paying sectors like health care, retail, and hospitality. Despite oil production reaching record highs, those gains are no longer tied to job creation.
 
+
 ## Estimated delivery
 
 The final product will be a series of data viz that show where wages in Houston fall behind, which jobs are growing or shrinking, and how the city’s labor market is changing. The goal is to make these patterns clear and grounded in the data.
+
+## How did you find this story? Summarize any previous coverage.
+The Greater Houston Partnership's 2024 employment forecast noted a shift toward low-wage job growth. Wage data shows a clear and persistent gap between Houston and the state average in many major sectors. Houston Chornicle's coverage of oil industry. 
+
+<https://en.as.com/latest_news/how-much-do-construction-workers-earn-in-texas-n/> <https://www.houston.org/news/rising-houston-projects-look-forward-2025-and-beyond> <https://www.houstonchronicle.com/business/article/jobs-report-us-employment-houston-economy-19747453.php> <https://www.houstonchronicle.com/news/investigations/article/orphan-oil-wells-plug-middleton-bill-edf-rrc-20232880.php> <https://data.bls.gov/oes/#/occGeo/One%20occupation%20for%20multiple%20geographical%20areas> <https://profrobwells.github.io/Visualizing_State_Local_Economy/WSJ_Merrill_GDP.html>
+
 
 ```{r}
 library(tidyverse)
@@ -46,29 +74,22 @@ houston <- read_excel("../data/houston_OES_Report.xlsx", skip=5) |>
 # 1. Occupation compare between Houston and Texas overall
 
 ```{r}
-# 1. Occupation compare between Houston and Texas overall
-
 houston <- houston |> 
   mutate(
-    soc_code = str_extract(occupation_soc_code, "\\d{2}-\\d{4}")
+    soc_code = str_extract(occupation_soc_code, "\\d{2}-\\d{4}"),
+    hourly_mean = as.numeric(hourly_mean_wage)
   )
 
 texas <- texas |> 
   mutate(
-    soc_code = str_trim(occ_code)
+    soc_code = str_trim(occ_code),
+    hourly_mean = as.numeric(h_mean)
   )
 
 wage_compare <- inner_join(
-  houston, texas,
-  by = "soc_code",
-  suffix = c("_houston", "_texas")
-) |> 
-  mutate(
-    hourly_mean_houston = as.numeric(hourly_mean_wage),
-    hourly_mean_texas = as.numeric(h_mean),
-    employment_houston = as.numeric(employment_1),
-    employment_texas = as.numeric(tot_emp)
-  ) |> 
+  houston, texas, by = "soc_code", suffix = c("_houston", "_texas")
+)
+wage_compare <- wage_compare |> 
   distinct(soc_code, .keep_all = TRUE)
 
 houston_below_texas <- wage_compare |> 
@@ -77,39 +98,24 @@ houston_below_texas <- wage_compare |>
     soc_code,
     occ_title,
     hourly_mean_houston,
-    hourly_mean_texas,
-    employment_houston,
-    employment_texas
+    hourly_mean_texas
   ) |> 
   arrange(desc(hourly_mean_texas))
 
 print(houston_below_texas)
-
 
 ```
 
 # 2. Top 10 largest underpayment gaps
 
 ```{r}
-top10_gap <- wage_compare |> 
-  filter(hourly_mean_houston < hourly_mean_texas) |> 
-  mutate(
-    wage_gap = hourly_mean_texas - hourly_mean_houston
-  ) |> 
+top10_gap <- houston_below_texas |> 
+  mutate(wage_gap = hourly_mean_texas - hourly_mean_houston) |> 
   arrange(desc(wage_gap)) |> 
-  slice(1:10) |> 
-  select(
-    soc_code,
-    occ_title,
-    hourly_mean_houston,
-    hourly_mean_texas,
-    wage_gap,
-    employment_houston,
-    employment_texas
-  )
+  slice(1:10)
 
+#View top 10
 print(top10_gap)
-
 ```
 
 # 3. Top 10 largest above payment gaps
@@ -121,13 +127,7 @@ top10_houston_above_texas <- wage_compare |>
   arrange(desc(wage_gap)) |> 
   distinct(soc_code, .keep_all = TRUE) |>  
   slice(1:10) |> 
-  select(soc_code,
-    occ_title,
-    hourly_mean_houston,
-    hourly_mean_texas,
-    wage_gap,
-    employment_houston,
-    employment_texas)
+  select(soc_code, occ_title, hourly_mean_houston, hourly_mean_texas, wage_gap)
 
 print(top10_houston_above_texas)
 

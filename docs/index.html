@@ -358,52 +358,13 @@ display: none;
 <div id="pitch-how-houstons-job-market-deviates-from-the-texas-norm" class="section level1">
 <h1>Pitch: How Houston’s Job Market Deviates From the Texas Norm</h1>
 <p><a href="mailto:avahu@berkeley.edu" class="email">avahu@berkeley.edu</a> | June 2, 2025</p>
-<div id="what-is-this-story-about" class="section level2">
-<h2>what is this story about?</h2>
-<p>This story uses occupational wage data from the OEWS program and GDP
-data from the BEA to examine how Houston’s job market differs from the
-rest of Texas. It highlights which occupations are underpaid in Houston,
-which low-wage jobs are growing, and how the city’s economy has shifted
-away from high-paying energy jobs over the past decade.</p>
-</div>
-<div id="why-tell-this-story-now" class="section level2">
-<h2>why tell this story NOW？</h2>
 <p>Houston is projected to add over 70,000 jobs in 2025, according to
 the Greater Houston Partnership’s employment forecast, but many of those
 will be in sectors that already pay below the state average.</p>
-</div>
-<div id="six-things-5w-and-h-you-learned-about-this-story" class="section level2">
-<h2>Six things (5W and H) you learned about this story:</h2>
-<p>Who – Houston workers in sectors like food service, health care
-support, and cleaning What – These jobs are growing, but most pay less
-than the Texas average When – The 2025 forecast shows these sectors will
-expand the most Where – Primarily Harris County and surrounding metro
-counties Why – The city has shifted away from high-paying industries
-like oil and gas, which has lost over 60,000 jobs How – Using wage and
-GDP data to show where workers are falling behind</p>
-</div>
-<div id="data-you-will-be-using-to-inform-the-story" class="section level2">
-<h2>Data you will be using to inform the story:</h2>
-<ul>
-<li>OEWS occupational wage data for Texas and Houston</li>
-<li>BEA GDP and personal income by county</li>
-<li>Greater Houston Partnership’s 2024–2025 employment forecast</li>
-</ul>
-</div>
-<div id="what-are-the-visual-possibilities" class="section level2">
-<h2>What are the visual possibilities?</h2>
-<p>To show how Houston’s economy is changing over time, I will use
-Bureau of Economic Analysis (BEA) data, GDP, on county-level employment
-by industry. I’ll highlight the decline of durable-goods manufacturing
-and energy jobs, and the rise of health care, education, and
-hospitality.</p>
-<p>I will also include two choropleth maps to show how Houston fits into
-the state’s economic landscape. The first shows average annual earnings
-by city in Texas, based on the most recent BEA personal income data. The
-second map shows total county-level GDP, showing comparison between
-economic output and compensation. Together, these maps show whether
-regions that produce more also pay more and where Houston falls in that
-relationship.</p>
+<iframe title="Top 10 Jobs Underpaid in Houston Compared to Texas" aria-label="Range Plot" id="datawrapper-chart-FVp3S" src="https://datawrapper.dwcdn.net/FVp3S/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1">
+</iframe>
+<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
 <p>Early analysis shows that several high-skill occupations, including
 chief executives, neurologists, lawyers, and marketing managers, earn
 thousands less per year in Houston than elsewhere in Texas. These roles
@@ -421,26 +382,12 @@ remains central to Houston’s economy, but its share of employment is
 shrinking, replaced by lower-paying sectors like health care, retail,
 and hospitality. Despite oil production reaching record highs, those
 gains are no longer tied to job creation.</p>
-</div>
 <div id="estimated-delivery" class="section level2">
 <h2>Estimated delivery</h2>
 <p>The final product will be a series of data viz that show where wages
 in Houston fall behind, which jobs are growing or shrinking, and how the
 city’s labor market is changing. The goal is to make these patterns
 clear and grounded in the data.</p>
-</div>
-<div id="how-did-you-find-this-story-summarize-any-previous-coverage." class="section level2">
-<h2>How did you find this story? Summarize any previous coverage.</h2>
-<p>The Greater Houston Partnership’s 2024 employment forecast noted a
-shift toward low-wage job growth. Wage data shows a clear and persistent
-gap between Houston and the state average in many major sectors. Houston
-Chornicle’s coverage of oil industry.</p>
-<p><a href="https://en.as.com/latest_news/how-much-do-construction-workers-earn-in-texas-n/" class="uri">https://en.as.com/latest_news/how-much-do-construction-workers-earn-in-texas-n/</a>
-<a href="https://www.houston.org/news/rising-houston-projects-look-forward-2025-and-beyond" class="uri">https://www.houston.org/news/rising-houston-projects-look-forward-2025-and-beyond</a>
-<a href="https://www.houstonchronicle.com/business/article/jobs-report-us-employment-houston-economy-19747453.php" class="uri">https://www.houstonchronicle.com/business/article/jobs-report-us-employment-houston-economy-19747453.php</a>
-<a href="https://www.houstonchronicle.com/news/investigations/article/orphan-oil-wells-plug-middleton-bill-edf-rrc-20232880.php" class="uri">https://www.houstonchronicle.com/news/investigations/article/orphan-oil-wells-plug-middleton-bill-edf-rrc-20232880.php</a>
-<a href="https://data.bls.gov/oes/#/occGeo/One%20occupation%20for%20multiple%20geographical%20areas" class="uri">https://data.bls.gov/oes/#/occGeo/One%20occupation%20for%20multiple%20geographical%20areas</a>
-<a href="https://profrobwells.github.io/Visualizing_State_Local_Economy/WSJ_Merrill_GDP.html" class="uri">https://profrobwells.github.io/Visualizing_State_Local_Economy/WSJ_Merrill_GDP.html</a></p>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
@@ -476,66 +423,86 @@ houston &lt;- read_excel(&quot;../data/houston_OES_Report.xlsx&quot;, skip=5) |&
 </div>
 <div id="occupation-compare-between-houston-and-texas-overall" class="section level1">
 <h1>1. Occupation compare between Houston and Texas overall</h1>
-<pre class="r"><code>houston &lt;- houston |&gt; 
-  mutate(
-    soc_code = str_extract(occupation_soc_code, &quot;\\d{2}-\\d{4}&quot;),
-    hourly_mean = as.numeric(hourly_mean_wage)
-  )</code></pre>
-<pre><code>## Warning: There was 1 warning in `mutate()`.
-## ℹ In argument: `hourly_mean = as.numeric(hourly_mean_wage)`.
-## Caused by warning:
-## ! NAs introduced by coercion</code></pre>
-<pre class="r"><code>texas &lt;- texas |&gt; 
-  mutate(
-    soc_code = str_trim(occ_code),
-    hourly_mean = as.numeric(h_mean)
-  )</code></pre>
-<pre><code>## Warning: There was 1 warning in `mutate()`.
-## ℹ In argument: `hourly_mean = as.numeric(h_mean)`.
-## Caused by warning:
-## ! NAs introduced by coercion</code></pre>
-<pre class="r"><code>wage_compare &lt;- inner_join(
-  houston, texas, by = &quot;soc_code&quot;, suffix = c(&quot;_houston&quot;, &quot;_texas&quot;)
-)
-wage_compare &lt;- wage_compare |&gt; 
-  distinct(soc_code, .keep_all = TRUE)
+<pre class="r"><code># 1. Occupation compare between Houston and Texas overall
 
-houston_below_texas &lt;- wage_compare |&gt; 
+houston &lt;- houston |&gt; 
+  mutate(
+    soc_code = str_extract(occupation_soc_code, &quot;\\d{2}-\\d{4}&quot;)
+  )
+
+texas &lt;- texas |&gt; 
+  mutate(
+    soc_code = str_trim(occ_code)
+  )
+
+wage_compare &lt;- inner_join(
+  houston, texas,
+  by = &quot;soc_code&quot;,
+  suffix = c(&quot;_houston&quot;, &quot;_texas&quot;)
+) |&gt; 
+  mutate(
+    hourly_mean_houston = as.numeric(hourly_mean_wage),
+    hourly_mean_texas = as.numeric(h_mean),
+    employment_houston = as.numeric(employment_1),
+    employment_texas = as.numeric(tot_emp)
+  ) |&gt; 
+  distinct(soc_code, .keep_all = TRUE)</code></pre>
+<pre><code>## Warning: There were 4 warnings in `mutate()`.
+## The first warning was:
+## ℹ In argument: `hourly_mean_houston = as.numeric(hourly_mean_wage)`.
+## Caused by warning:
+## ! NAs introduced by coercion
+## ℹ Run `dplyr::last_dplyr_warnings()` to see the 3 remaining warnings.</code></pre>
+<pre class="r"><code>houston_below_texas &lt;- wage_compare |&gt; 
   filter(hourly_mean_houston &lt; hourly_mean_texas) |&gt; 
   select(
     soc_code,
     occ_title,
     hourly_mean_houston,
-    hourly_mean_texas
+    hourly_mean_texas,
+    employment_houston,
+    employment_texas
   ) |&gt; 
   arrange(desc(hourly_mean_texas))
 
 print(houston_below_texas)</code></pre>
-<pre><code>## # A tibble: 312 × 4
-##    soc_code occ_title                      hourly_mean_houston hourly_mean_texas
-##    &lt;chr&gt;    &lt;chr&gt;                                        &lt;dbl&gt;             &lt;dbl&gt;
-##  1 11-1011  Chief Executives                             161.               349.
-##  2 29-1216  General Internal Medicine Phy…               150.               160.
-##  3 29-1217  Neurologists                                 112.               160.
-##  4 29-1029  Dentists, All Other Specialis…               112.               139.
-##  5 29-1151  Nurse Anesthetists                           114.               124.
-##  6 29-1211  Anesthesiologists                            120.               121.
-##  7 23-1011  Lawyers                                       78.8              120.
-##  8 11-2021  Marketing Managers                            75.2              109.
-##  9 11-2032  Public Relations Managers                     67.7              105.
-## 10 11-9041  Architectural and Engineering…                91.6              104.
-## # ℹ 302 more rows</code></pre>
+<pre><code>## # A tibble: 312 × 6
+##    soc_code occ_title   hourly_mean_houston hourly_mean_texas employment_houston
+##    &lt;chr&gt;    &lt;chr&gt;                     &lt;dbl&gt;             &lt;dbl&gt;              &lt;dbl&gt;
+##  1 11-1011  Chief Exec…               161.               349.               1930
+##  2 29-1216  General In…               150.               160.                700
+##  3 29-1217  Neurologis…               112.               160.                120
+##  4 29-1029  Dentists, …               112.               139.                 NA
+##  5 29-1151  Nurse Anes…               114.               124.                900
+##  6 29-1211  Anesthesio…               120.               121.               1190
+##  7 23-1011  Lawyers                    78.8              120.              17290
+##  8 11-2021  Marketing …                75.2              109.               9210
+##  9 11-2032  Public Rel…                67.7              105.               1850
+## 10 11-9041  Architectu…                91.6              104.               5510
+## # ℹ 302 more rows
+## # ℹ 1 more variable: employment_texas &lt;dbl&gt;</code></pre>
 </div>
 <div id="top-10-largest-underpayment-gaps" class="section level1">
 <h1>2. Top 10 largest underpayment gaps</h1>
-<pre class="r"><code>top10_gap &lt;- houston_below_texas |&gt; 
-  mutate(wage_gap = hourly_mean_texas - hourly_mean_houston) |&gt; 
+<pre class="r"><code>top10_gap &lt;- wage_compare |&gt; 
+  filter(hourly_mean_houston &lt; hourly_mean_texas) |&gt; 
+  mutate(
+    wage_gap = hourly_mean_texas - hourly_mean_houston
+  ) |&gt; 
   arrange(desc(wage_gap)) |&gt; 
-  slice(1:10)
+  slice(1:10) |&gt; 
+  select(
+    soc_code,
+    occ_title,
+    hourly_mean_houston,
+    hourly_mean_texas,
+    wage_gap,
+    employment_houston,
+    employment_texas
+  )
 
-#View top 10
 print(top10_gap)</code></pre>
-<pre><code>## # A tibble: 10 × 5
+<pre><code>## # A tibble: 10 × 7
 ##    soc_code occ_title             hourly_mean_houston hourly_mean_texas wage_gap
 ##    &lt;chr&gt;    &lt;chr&gt;                               &lt;dbl&gt;             &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 11-1011  Chief Executives                    161.              349.     188. 
@@ -547,7 +514,8 @@ print(top10_gap)</code></pre>
 ##  7 11-2032  Public Relations Man…                67.7             105.      37.4
 ##  8 41-1012  First-Line Superviso…                39.8              75.4     35.7
 ##  9 41-9022  Real Estate Sales Ag…                36.6              71.1     34.6
-## 10 11-2021  Marketing Managers                   75.2             109.      33.9</code></pre>
+## 10 11-2021  Marketing Managers                   75.2             109.      33.9
+## # ℹ 2 more variables: employment_houston &lt;dbl&gt;, employment_texas &lt;dbl&gt;</code></pre>
 </div>
 <div id="top-10-largest-above-payment-gaps" class="section level1">
 <h1>3. Top 10 largest above payment gaps</h1>
@@ -557,10 +525,16 @@ print(top10_gap)</code></pre>
   arrange(desc(wage_gap)) |&gt; 
   distinct(soc_code, .keep_all = TRUE) |&gt;  
   slice(1:10) |&gt; 
-  select(soc_code, occ_title, hourly_mean_houston, hourly_mean_texas, wage_gap)
+  select(soc_code,
+    occ_title,
+    hourly_mean_houston,
+    hourly_mean_texas,
+    wage_gap,
+    employment_houston,
+    employment_texas)
 
 print(top10_houston_above_texas)</code></pre>
-<pre><code>## # A tibble: 10 × 5
+<pre><code>## # A tibble: 10 × 7
 ##    soc_code occ_title             hourly_mean_houston hourly_mean_texas wage_gap
 ##    &lt;chr&gt;    &lt;chr&gt;                               &lt;dbl&gt;             &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 29-1222  Physicians, Patholog…               136.               74.5     61.1
@@ -572,7 +546,8 @@ print(top10_houston_above_texas)</code></pre>
 ##  7 29-1081  Podiatrists                         111.               83.9     27.0
 ##  8 29-1223  Psychiatrists                       116.               90.1     26.4
 ##  9 17-2072  Electronics Engineer…                58                33.7     24.3
-## 10 27-2042  Musicians and Singers                53.3              31.5     21.8</code></pre>
+## 10 27-2042  Musicians and Singers                53.3              31.5     21.8
+## # ℹ 2 more variables: employment_houston &lt;dbl&gt;, employment_texas &lt;dbl&gt;</code></pre>
 </div>
 <div id="which-low-wage-occupations-have-the-highest-employment-in-houston" class="section level1">
 <h1>4. Which low-wage occupations have the highest employment in
