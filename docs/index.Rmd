@@ -1,62 +1,59 @@
 ---
-title: "Pitch-Ava Hu - Houston Chronicle"
+title: "Ava Hu - Houston Chronicle"
 output: html_document
-date: "2025-06-02"
+date: "2025-06-03"
 ---
 
-# Pitch: How Houston’s Job Market Deviates From the Texas Norm
+# How Houston’s Job Market Deviates From the Texas Norm
 
 [avahu\@berkeley.edu](mailto:avahu@berkeley.edu){.email} \| June 2, 2025
 
-Houston is projected to add over 70,000 jobs in 2025, according to the Greater Houston Partnership’s employment forecast, but many of those will be in sectors that already pay below the state average.
 
-<iframe title="Top 10 Jobs Underpaid in Houston Compared to Texas" aria-label="Range Plot" id="datawrapper-chart-FVp3S" src="https://datawrapper.dwcdn.net/FVp3S/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1">
-
-</iframe>
-
-```{=html}
-<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
-</script>
-```
-
-Early analysis shows that several high-skill occupations, including chief executives, neurologists, lawyers, and marketing managers, earn thousands less per year in Houston than elsewhere in Texas. These roles are typically associated with higher education and management experience but appear to be systematically undervalued in the local market.
 
 At the same time, many of Houston’s most common jobs — food prep workers, janitors, home health aides — pay below the Texas average. These positions make up a large share of the city’s workforce and are projected to expand in 2025, according to the Greater Houston Partnership’s employment forecast. This suggests a growing reliance on low-wage labor to drive the region’s job growth.
 
 Another focus is the long-term decline of energy jobs in Houston. Oil and gas companies have cut over 60,000 positions in the past decade. Oil remains central to Houston’s economy, but its share of employment is shrinking, replaced by lower-paying sectors like health care, retail, and hospitality. Despite oil production reaching record highs, those gains are no longer tied to job creation.
 
-## Estimated delivery
-
-The final product will be a series of data viz that show where wages in Houston fall behind, which jobs are growing or shrinking, and how the city’s labor market is changing. The goal is to make these patterns clear and grounded in the data.
+### SET UP
 
 ```{r}
 library(tidyverse)
 library(janitor)
 library(readxl)
 library(rvest)
-
-texas<- read.csv("../data/texas_oes.csv") |> 
-     clean_names()
-
-houston <- read_excel("../data/houston_OES_Report.xlsx", skip=5) |> 
-   clean_names()
-
 ```
 
-# 1. Occupation compare between Houston and Texas overall
+### UPLOAD & CLEAN DATA
+
+#### Houston OES Data
+
+This dataset includes wage and employment information for each occupation in the Houston-The Woodlands-Sugar Land metropolitan area.
 
 ```{r}
-# 1. Occupation compare between Houston and Texas overall
-
-houston <- houston |> 
+houston <- read_excel("../data/houston_OES_Report.xlsx", skip = 5) |> 
+  clean_names() |> 
   mutate(
     soc_code = str_extract(occupation_soc_code, "\\d{2}-\\d{4}")
   )
 
-texas <- texas |> 
+```
+
+#### Texas OES Data
+
+This dataset contains overall Texas occupational employment and wage estimates. We'll clean and align it to match the Houston dataset format.#
+
+```{r}
+texas <- read_csv("../data/texas_oes.csv") |> 
+  clean_names() |> 
   mutate(
     soc_code = str_trim(occ_code)
   )
+```
+
+### MERGE & COMPARE
+Join the two datasets by SOC code, then calculate wage gaps and prepare for analysis.
+
+```{r}
 
 wage_compare <- inner_join(
   houston, texas,
@@ -64,31 +61,16 @@ wage_compare <- inner_join(
   suffix = c("_houston", "_texas")
 ) |> 
   mutate(
-    hourly_mean_houston = as.numeric(hourly_mean_wage),
-    hourly_mean_texas = as.numeric(h_mean),
+    hourly_mean_houston = as.numeric(hourly_mean_wage),    # from Houston file
+    hourly_mean_texas = as.numeric(h_mean),                # from Texas file
     employment_houston = as.numeric(employment_1),
     employment_texas = as.numeric(tot_emp)
   ) |> 
   distinct(soc_code, .keep_all = TRUE)
 
-houston_below_texas <- wage_compare |> 
-  filter(hourly_mean_houston < hourly_mean_texas) |> 
-  select(
-    soc_code,
-    occ_title,
-    hourly_mean_houston,
-    hourly_mean_texas,
-    employment_houston,
-    employment_texas
-  ) |> 
-  arrange(desc(hourly_mean_texas))
-
-print(houston_below_texas)
-
-
 ```
 
-# 2. Top 10 largest underpayment gaps
+Next, we filtered for occupations where workers in Houston earn less than their counterparts statewide. Then, we calculated the absolute wage gap and sorted the results to find the 10 largest gaps.
 
 ```{r}
 top10_gap <- wage_compare |> 
@@ -112,7 +94,7 @@ print(top10_gap)
 
 ```
 
-# 3. Top 10 largest above payment gaps
+This time, we calculated the reverse: occupations where Houston pays more than the state average. Again, we ranked them by wage difference and kept the top 10.
 
 ```{r}
 top10_houston_above_texas <- wage_compare |> 
@@ -131,6 +113,19 @@ top10_houston_above_texas <- wage_compare |>
 
 print(top10_houston_above_texas)
 
+```
+
+### Findings
+
+Several high-skill occupations in Houston show large negative wage gaps compared to the Texas average. Chief executives earn $161.29/hour in Houston, while the statewide average is $349.34, a difference of $188.05. Lawyers make $78.80/hour locally versus $119.67 statewide.
+
+Occupations that earn significantly more in Houston are medical roles. General Internal Medicine Physicians, Psychiatrists, Radiologists, and Pathologists see some of the biggest wage premiums in Houston.Pathologists earn $135.66/hour in Houston, compared to $74.51 statewide. Besides, general and operations managers earn $66.82/hour in Houston versus $37.09 at the state level, with over 100,000 employed locally.
+
+<iframe title="Top 10 Jobs Underpaid in Houston Compared to Texas" aria-label="Range Plot" id="datawrapper-chart-FVp3S" src="https://datawrapper.dwcdn.net/FVp3S/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe>
+
+```{=html}
+<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
 ```
 
 # 4. Which low-wage occupations have the highest employment in Houston?
