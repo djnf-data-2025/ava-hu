@@ -1,7 +1,8 @@
 ---
 title: "How Houston’s Job Market Deviates From the Texas Norm"
-output: [avahu\@berkeley.edu](mailto:avahu@berkeley.edu){.email} 
+output: html_document
 date: "2025-06-03"
+author: "Ava Hu"
 ---
 
 
