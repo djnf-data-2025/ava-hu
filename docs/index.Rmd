@@ -128,7 +128,7 @@ Occupations that earn significantly more in Houston are medical roles. General I
 Beyond wage extremes, it's worth asking:
 Which low-paid jobs in Houston employ the most people?
 
-I filtered for occupations where Houston wages fall below the statewide average, then ranked by local employment. The result highlights key sectors like education, construction, personal care, and retail—jobs that support the city’s infrastructure and everyday life, yet often offer relatively low pay.
+I filtered for occupations where Houston wages fall below the statewide average, then ranked by local employment. 
 
 ```{r}
 top10_low_paid_high_employment <- wage_compare |> 
@@ -145,6 +145,10 @@ top10_low_paid_high_employment <- wage_compare |>
 
 print(top10_low_paid_high_employment)
 ```
+The result highlights key sectors like education, construction, personal care, and retail—jobs that support the city’s infrastructure and everyday life, yet often offer relatively low pay. Nearly 196,000 people work in education in Houston, earning an average of $31.14 per hour, $15 below the statewide average.
+
+<iframe title="Houston’s Most Common Low-Wage Jobs" aria-label="Table" id="datawrapper-chart-BfgTT" src="https://datawrapper.dwcdn.net/BfgTT/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
 
 # 5. Houston niche highpay
 
@@ -165,7 +169,6 @@ top10_high_paid_low_employment <- wage_compare |>
 
 print(top10_high_paid_low_employment)
 ```
-
 
 At the same time, many of Houston’s most common jobs — food prep workers, janitors, home health aides — pay below the Texas average. These positions make up a large share of the city’s workforce and are projected to expand in 2025, according to the Greater Houston Partnership’s employment forecast. This suggests a growing reliance on low-wage labor to drive the region’s job growth.
 

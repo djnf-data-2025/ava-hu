@@ -539,10 +539,7 @@ locally.</p>
 <p>Beyond wage extremes, it’s worth asking: Which low-paid jobs in
 Houston employ the most people?</p>
 <p>I filtered for occupations where Houston wages fall below the
-statewide average, then ranked by local employment. The result
-highlights key sectors like education, construction, personal care, and
-retail—jobs that support the city’s infrastructure and everyday life,
-yet often offer relatively low pay.</p>
+statewide average, then ranked by local employment.</p>
 <pre class="r"><code>top10_low_paid_high_employment &lt;- wage_compare |&gt; 
   filter(hourly_mean_houston &lt; hourly_mean_texas) |&gt; 
   mutate(
@@ -572,6 +569,15 @@ yet often offer relatively low pay.</p>
 ##  8 31-1120  Home Heal…                12.1              14.0     1.94      60390
 ##  9 39-0000  Personal …                16.8              18.5     1.64      52860
 ## 10 37-2011  Janitors …                15.2              17.1     1.93      47130</code></pre>
+<p>The result highlights key sectors like education, construction,
+personal care, and retail—jobs that support the city’s infrastructure
+and everyday life, yet often offer relatively low pay. Nearly 196,000
+people work in education in Houston, earning an average of $31.14 per
+hour, $15 below the statewide average.</p>
+<iframe title="Houston’s Most Common Low-Wage Jobs" aria-label="Table" id="datawrapper-chart-BfgTT" src="https://datawrapper.dwcdn.net/BfgTT/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1">
+</iframe>
+<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
 </div>
 </div>
 <div id="houston-niche-highpay" class="section level1">
