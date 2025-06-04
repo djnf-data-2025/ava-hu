@@ -1,12 +1,10 @@
 ---
-title: "Ava Hu - Houston Chronicle"
-output: html_document
+title: "How Houston’s Job Market Deviates From the Texas Norm"
+output: [avahu\@berkeley.edu](mailto:avahu@berkeley.edu){.email} 
 date: "2025-06-03"
 ---
 
-# How Houston’s Job Market Deviates From the Texas Norm
 
-[avahu\@berkeley.edu](mailto:avahu@berkeley.edu){.email} \| June 2, 2025
 
 
 ### SET UP
@@ -150,9 +148,8 @@ The result highlights key sectors like education, construction, personal care, a
 <iframe title="Houston’s Most Common Low-Wage Jobs" aria-label="Table" id="datawrapper-chart-BfgTT" src="https://datawrapper.dwcdn.net/BfgTT/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
 
-# 5. Houston niche highpay
 
-Top 10 occupations in Houston with higher wages than the Texas average but very low employment
+### Niche, High-Pay Jobs in Houston
 
 ```{r}
 top10_high_paid_low_employment <- wage_compare |> 
@@ -170,6 +167,6 @@ top10_high_paid_low_employment <- wage_compare |>
 print(top10_high_paid_low_employment)
 ```
 
-At the same time, many of Houston’s most common jobs — food prep workers, janitors, home health aides — pay below the Texas average. These positions make up a large share of the city’s workforce and are projected to expand in 2025, according to the Greater Houston Partnership’s employment forecast. This suggests a growing reliance on low-wage labor to drive the region’s job growth.
+A handful of occupations in Houston offer above-average wages despite employing very few people. For example, media and communication equipment workers earn $41.64/hour, over $13 more than the Texas average, yet only 30 people hold this job locally. Food scientists also stand out, with $42.11/hour in Houston compared to $31.48 statewide, but just 70 workers are employed in the role.
 
-Another focus is the long-term decline of energy jobs in Houston. Oil and gas companies have cut over 60,000 positions in the past decade. Oil remains central to Houston’s economy, but its share of employment is shrinking, replaced by lower-paying sectors like health care, retail, and hospitality. Despite oil production reaching record highs, those gains are no longer tied to job creation.
+
