@@ -358,18 +358,6 @@ display: none;
 <div id="how-houstons-job-market-deviates-from-the-texas-norm" class="section level1">
 <h1>How Houston’s Job Market Deviates From the Texas Norm</h1>
 <p><a href="mailto:avahu@berkeley.edu" class="email">avahu@berkeley.edu</a> | June 2, 2025</p>
-<p>At the same time, many of Houston’s most common jobs — food prep
-workers, janitors, home health aides — pay below the Texas average.
-These positions make up a large share of the city’s workforce and are
-projected to expand in 2025, according to the Greater Houston
-Partnership’s employment forecast. This suggests a growing reliance on
-low-wage labor to drive the region’s job growth.</p>
-<p>Another focus is the long-term decline of energy jobs in Houston. Oil
-and gas companies have cut over 60,000 positions in the past decade. Oil
-remains central to Houston’s economy, but its share of employment is
-shrinking, replaced by lower-paying sectors like health care, retail,
-and hospitality. Despite oil production reaching record highs, those
-gains are no longer tied to job creation.</p>
 <div id="set-up" class="section level3">
 <h3>SET UP</h3>
 <pre class="r"><code>library(tidyverse)</code></pre>
@@ -546,11 +534,15 @@ locally.</p>
 <script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
 </div>
-</div>
-<div id="which-low-wage-occupations-have-the-highest-employment-in-houston" class="section level1">
-<h1>4. Which low-wage occupations have the highest employment in
-Houston?</h1>
-<p>food preparation, retail, and personal care</p>
+<div id="lets-explore-something-practical-whos-doing-the-work" class="section level3">
+<h3>Let’s Explore Something Practical: Who’s Doing the Work?</h3>
+<p>Beyond wage extremes, it’s worth asking: Which low-paid jobs in
+Houston employ the most people?</p>
+<p>I filtered for occupations where Houston wages fall below the
+statewide average, then ranked by local employment. The result
+highlights key sectors like education, construction, personal care, and
+retail—jobs that support the city’s infrastructure and everyday life,
+yet often offer relatively low pay.</p>
 <pre class="r"><code>top10_low_paid_high_employment &lt;- wage_compare |&gt; 
   filter(hourly_mean_houston &lt; hourly_mean_texas) |&gt; 
   mutate(
@@ -580,6 +572,7 @@ Houston?</h1>
 ##  8 31-1120  Home Heal…                12.1              14.0     1.94      60390
 ##  9 39-0000  Personal …                16.8              18.5     1.64      52860
 ## 10 37-2011  Janitors …                15.2              17.1     1.93      47130</code></pre>
+</div>
 </div>
 <div id="houston-niche-highpay" class="section level1">
 <h1>5. Houston niche highpay</h1>
@@ -614,6 +607,18 @@ average but very low employment</p>
 ##  8 49-9069  Precision…                38.6              32.4    6.18          60
 ##  9 11-9013  Farmers, …                40.9              37.3    3.62          70
 ## 10 19-1012  Food Scie…                42.1              31.5   10.6           70</code></pre>
+<p>At the same time, many of Houston’s most common jobs — food prep
+workers, janitors, home health aides — pay below the Texas average.
+These positions make up a large share of the city’s workforce and are
+projected to expand in 2025, according to the Greater Houston
+Partnership’s employment forecast. This suggests a growing reliance on
+low-wage labor to drive the region’s job growth.</p>
+<p>Another focus is the long-term decline of energy jobs in Houston. Oil
+and gas companies have cut over 60,000 positions in the past decade. Oil
+remains central to Houston’s economy, but its share of employment is
+shrinking, replaced by lower-paying sectors like health care, retail,
+and hospitality. Despite oil production reaching record highs, those
+gains are no longer tied to job creation.</p>
 </div>
 
 

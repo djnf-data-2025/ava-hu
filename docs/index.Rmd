@@ -9,11 +9,6 @@ date: "2025-06-03"
 [avahu\@berkeley.edu](mailto:avahu@berkeley.edu){.email} \| June 2, 2025
 
 
-
-At the same time, many of Houston’s most common jobs — food prep workers, janitors, home health aides — pay below the Texas average. These positions make up a large share of the city’s workforce and are projected to expand in 2025, according to the Greater Houston Partnership’s employment forecast. This suggests a growing reliance on low-wage labor to drive the region’s job growth.
-
-Another focus is the long-term decline of energy jobs in Houston. Oil and gas companies have cut over 60,000 positions in the past decade. Oil remains central to Houston’s economy, but its share of employment is shrinking, replaced by lower-paying sectors like health care, retail, and hospitality. Despite oil production reaching record highs, those gains are no longer tied to job creation.
-
 ### SET UP
 
 ```{r}
@@ -128,9 +123,12 @@ Occupations that earn significantly more in Houston are medical roles. General I
 </script>
 ```
 
-# 4. Which low-wage occupations have the highest employment in Houston?
+### Let’s Explore Something Practical: Who’s Doing the Work?
 
-food preparation, retail, and personal care
+Beyond wage extremes, it's worth asking:
+Which low-paid jobs in Houston employ the most people?
+
+I filtered for occupations where Houston wages fall below the statewide average, then ranked by local employment. The result highlights key sectors like education, construction, personal care, and retail—jobs that support the city’s infrastructure and everyday life, yet often offer relatively low pay.
 
 ```{r}
 top10_low_paid_high_employment <- wage_compare |> 
@@ -167,3 +165,8 @@ top10_high_paid_low_employment <- wage_compare |>
 
 print(top10_high_paid_low_employment)
 ```
+
+
+At the same time, many of Houston’s most common jobs — food prep workers, janitors, home health aides — pay below the Texas average. These positions make up a large share of the city’s workforce and are projected to expand in 2025, according to the Greater Houston Partnership’s employment forecast. This suggests a growing reliance on low-wage labor to drive the region’s job growth.
+
+Another focus is the long-term decline of energy jobs in Houston. Oil and gas companies have cut over 60,000 positions in the past decade. Oil remains central to Houston’s economy, but its share of employment is shrinking, replaced by lower-paying sectors like health care, retail, and hospitality. Despite oil production reaching record highs, those gains are no longer tied to job creation.
