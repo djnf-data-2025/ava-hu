@@ -5,10 +5,13 @@ date: "2025-06-03"
 author: "Ava Hu"
 ---
 
+### The Data
+**1-Texas_OES_Report**: Based on the U.S. Bureau of Labor Statistics’ May 2024 Occupational Employment and Wage Statistics. I used statewide data across all sectors. Source: [BLS OES Research Estimates](https://www.bls.gov/oes/2024/may/oes_research_estimates.htm).
+
+**2-Houston_OES_Report**: Derived from the May 2024 OES data published by the U.S. Bureau of Labor Statistics. I downloaded the data for the Houston-Pasadena-The Woodlands, TX metro area from the [Metropolitan and Nonmetropolitan Area Table](https://www.bls.gov/oes/2024/may/oessrcma.htm#T).
 
 
-
-### SET UP
+### Set Up
 
 ```{r}
 library(tidyverse)
@@ -24,23 +27,38 @@ library(rvest)
 This dataset includes wage and employment information for each occupation in the Houston-The Woodlands-Sugar Land metropolitan area.
 
 ```{r}
-houston <- read_excel("../data/houston_OES_Report.xlsx", skip = 5) |> 
+houston_clean <- read_excel("../data/houston_OES_Report.xlsx", skip = 5) |> 
   clean_names() |> 
   mutate(
-    soc_code = str_extract(occupation_soc_code, "\\d{2}-\\d{4}")
-  )
+    soc_code = str_extract(occupation_soc_code, "\\d{2}-\\d{4}"),
+    hourly_mean_houston = as.numeric(hourly_mean_wage),
+    employment_houston = as.numeric(employment_1)
+  ) |> 
+  filter(!is.na(soc_code), !is.na(hourly_mean_houston), !is.na(employment_houston))
 
 ```
 
 #### Texas OES Data
 
-This dataset contains overall Texas occupational employment and wage estimates. We'll clean and align it to match the Houston dataset format.#
+This dataset contains overall Texas occupational employment and wage estimates. We'll clean and align it to match the Houston dataset format.
+
+To account for the fact that Texas OES data includes multiple entries per occupation across different industries (NAICS classifications), I grouped the dataset by SOC code. For each occupation, I calculated the average hourly wage across all industries and summed up the total employment. This aggregation provides a single representative wage and employment figure per occupation, allowing a clean, one-to-one comparison with the Houston dataset.
 
 ```{r}
 texas <- read_csv("../data/texas_oes.csv") |> 
   clean_names() |> 
   mutate(
     soc_code = str_trim(occ_code)
+  )
+
+texas_clean <- texas |> 
+  clean_names() |> 
+  mutate(soc_code = str_trim(occ_code)) |> 
+  group_by(soc_code) |> 
+  summarise(
+    hourly_mean_texas = mean(as.numeric(h_mean), na.rm = TRUE),
+    employment_texas = sum(as.numeric(tot_emp), na.rm = TRUE),
+    .groups = "drop"
   )
 ```
 
@@ -50,41 +68,36 @@ Join the two datasets by SOC code, then calculate wage gaps and prepare for anal
 ```{r}
 
 wage_compare <- inner_join(
-  houston, texas,
-  by = "soc_code",
-  suffix = c("_houston", "_texas")
+  houston_clean, texas_clean,
+  by = "soc_code"
 ) |> 
-  mutate(
-    hourly_mean_houston = as.numeric(hourly_mean_wage),    # from Houston file
-    hourly_mean_texas = as.numeric(h_mean),                # from Texas file
-    employment_houston = as.numeric(employment_1),
-    employment_texas = as.numeric(tot_emp)
-  ) |> 
   distinct(soc_code, .keep_all = TRUE)
 
 ```
 
 Next, we filtered for occupations where workers in Houston earn less than their counterparts statewide. Then, we calculated the absolute wage gap and sorted the results to find the 10 largest gaps.
 
+
 ```{r}
-top10_gap <- wage_compare |> 
+
+top10_low_paid_high_employment <- wage_compare |> 
   filter(hourly_mean_houston < hourly_mean_texas) |> 
   mutate(
     wage_gap = hourly_mean_texas - hourly_mean_houston
   ) |> 
-  arrange(desc(wage_gap)) |> 
+  arrange(desc(employment_houston)) |> 
   slice(1:10) |> 
   select(
     soc_code,
-    occ_title,
+    occ_title = occupation_soc_code,
     hourly_mean_houston,
     hourly_mean_texas,
     wage_gap,
-    employment_houston,
-    employment_texas
+    employment_houston
   )
 
-print(top10_gap)
+print(top10_low_paid_high_employment)
+
 
 ```
 
@@ -92,28 +105,31 @@ This time, we calculated the reverse: occupations where Houston pays more than t
 
 ```{r}
 top10_houston_above_texas <- wage_compare |> 
+  filter(hourly_mean_houston > hourly_mean_texas) |> 
   mutate(wage_gap = hourly_mean_houston - hourly_mean_texas) |> 
-  filter(wage_gap > 0) |> 
   arrange(desc(wage_gap)) |> 
   distinct(soc_code, .keep_all = TRUE) |>  
   slice(1:10) |> 
-  select(soc_code,
-    occ_title,
+  select(
+    soc_code,
+    occ_title = occupation_soc_code,
     hourly_mean_houston,
     hourly_mean_texas,
     wage_gap,
     employment_houston,
-    employment_texas)
+    employment_texas
+  )
 
 print(top10_houston_above_texas)
+
 
 ```
 
 ### Findings
 
-Several high-skill occupations in Houston show large negative wage gaps compared to the Texas average. Chief executives earn $161.29/hour in Houston, while the statewide average is $349.34, a difference of $188.05. Lawyers make $78.80/hour locally versus $119.67 statewide.
+The top 10 underpaid jobs in Houston show relatively small wage differences, typically less than $3/hour, with the largest gap seen in sales and related occupations, where Houston workers earn about $7.36/hour less than their statewide counterparts. The rest of the list includes fast food workers, construction laborers, cashiers, stockers, and customer service representatives, all of whom experience minor pay disadvantages compared to the Texas average.
 
-Occupations that earn significantly more in Houston are medical roles. General Internal Medicine Physicians, Psychiatrists, Radiologists, and Pathologists see some of the biggest wage premiums in Houston.Pathologists earn $135.66/hour in Houston, compared to $74.51 statewide. Besides, general and operations managers earn $66.82/hour in Houston versus $37.09 at the state level, with over 100,000 employed locally.
+Occupations that earn significantly more in Houston are medical roles.At the top of the list are pathologists, who earn $135.66/hour in Houston—nearly $47/hour more than the statewide average. Other medical professions such as ophthalmologists, internal medicine physicians, dentists, and podiatrists also earn over $20/hour more in Houston than in Texas overall.
 
 <iframe title="Top 10 Jobs Underpaid in Houston Compared to Texas" aria-label="Range Plot" id="datawrapper-chart-FVp3S" src="https://datawrapper.dwcdn.net/FVp3S/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe>
 
@@ -122,7 +138,7 @@ Occupations that earn significantly more in Houston are medical roles. General I
 </script>
 ```
 
-### Let’s Explore Something Practical: Who’s Doing the Work?
+### Which Low-Wage Jobs Employ the Most People in Houston?
 
 Beyond wage extremes, it's worth asking:
 Which low-paid jobs in Houston employ the most people?
@@ -133,16 +149,22 @@ I filtered for occupations where Houston wages fall below the statewide average,
 top10_low_paid_high_employment <- wage_compare |> 
   filter(hourly_mean_houston < hourly_mean_texas) |> 
   mutate(
-    wage_gap = hourly_mean_texas - hourly_mean_houston,
-    employment = as.numeric(employment_1)
+    wage_gap = hourly_mean_texas - hourly_mean_houston
   ) |> 
-  filter(!is.na(employment)) |> 
-  arrange(desc(employment)) |> 
+  arrange(desc(employment_houston)) |> 
   distinct(soc_code, .keep_all = TRUE) |> 
   slice(1:10) |> 
-  select(soc_code, occ_title, hourly_mean_houston, hourly_mean_texas, wage_gap, employment)
+  select(
+    soc_code,
+    occ_title = occupation_soc_code,
+    hourly_mean_houston,
+    hourly_mean_texas,
+    wage_gap,
+    employment_houston
+  )
 
 print(top10_low_paid_high_employment)
+
 ```
 The result highlights key sectors like education, construction, personal care, and retail—jobs that support the city’s infrastructure and everyday life, yet often offer relatively low pay. Nearly 196,000 people work in education in Houston, earning an average of $31.14 per hour, $15 below the statewide average.
 
@@ -150,24 +172,33 @@ The result highlights key sectors like education, construction, personal care, a
 </script>
 
 
-### Niche, High-Pay Jobs in Houston
+### Top 10 occupations in Houston with higher wages than the Texas average but very low employment
+
+I also looked for occupations where the average hourly wage in Houston is higher than the statewide average, then ranked them by local employment. From there, I selected the 10 least common roles. 
 
 ```{r}
+
 top10_high_paid_low_employment <- wage_compare |> 
   filter(hourly_mean_houston > hourly_mean_texas) |> 
   mutate(
-    wage_gap = hourly_mean_houston - hourly_mean_texas,
-    employment = as.numeric(employment_1)
+    wage_gap = hourly_mean_houston - hourly_mean_texas
   ) |> 
-  filter(!is.na(employment)) |> 
-  arrange(employment) |>  
+  arrange(employment_houston) |>  
   distinct(soc_code, .keep_all = TRUE) |> 
   slice(1:10) |> 
-  select(soc_code, occ_title, hourly_mean_houston, hourly_mean_texas, wage_gap, employment)
+  select(
+    soc_code,
+    occ_title = occupation_soc_code,
+    hourly_mean_houston,
+    hourly_mean_texas,
+    wage_gap,
+    employment_houston
+  )
 
 print(top10_high_paid_low_employment)
+
 ```
 
-A handful of occupations in Houston offer above-average wages despite employing very few people. For example, media and communication equipment workers earn $41.64/hour, over $13 more than the Texas average, yet only 30 people hold this job locally. Food scientists also stand out, with $42.11/hour in Houston compared to $31.48 statewide, but just 70 workers are employed in the role.
+Some of the best-paying opportunities in Houston are highly specialized and relatively rare. For instance, podiatrists in Houston earn nearly $111/hour, about $22 more than the statewide average, but only 70 people work in that area. 
 
 
