@@ -271,6 +271,14 @@ print(sector_avg_table)
 ```
 
 ```{r}
+trend_summary <- sector_avg_table |> 
+  pivot_longer(-Sector, names_to = "year", values_to = "avg_employment") |> 
+  mutate(
+    year = as.integer(year),
+    industry = Sector
+  ) |> 
+  select(industry, year, avg_employment)
+
 trend_pct <- trend_summary |> 
   group_by(industry) |> 
   mutate(
