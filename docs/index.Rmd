@@ -202,3 +202,63 @@ print(top10_high_paid_low_employment)
 Some of the best-paying opportunities in Houston are highly specialized and relatively rare. For instance, podiatrists in Houston earn nearly $111/hour, about $22 more than the statewide average, but only 70 people work in that area. 
 
 
+## Trends
+
+```{r}
+# Set your data folder path
+data_path <- "~/Documents/GitHub/ava-hu/data"
+
+# Only load the 5 sector files
+file_paths <- list.files(
+  path = data_path,
+  pattern = "^SeriesReport.*\\.xlsx$|^HoustonMining.*\\.xlsx$",
+  full.names = TRUE
+)
+
+# Get sector name from metadata
+get_sector_name <- function(file) {
+  meta <- read_excel(file, range = "A8:B8", col_names = FALSE)
+  sector <- meta[[2]]
+  if (is.na(sector)) sector <- str_remove(basename(file), "\\.xlsx")
+  return(sector)
+}
+
+# Extract and compute Jan–Dec average for each year
+extract_annual_avg <- function(file) {
+  df <- read_excel(file, skip = 12) |> 
+    clean_names() |> 
+    select(year, jan:dec) |> 
+    filter(!is.na(year) & str_detect(as.character(year), "^\\d{4}")) |> 
+    mutate(across(jan:dec, as.numeric)) |> 
+    mutate(year = as.integer(year))
+
+  df$annual_avg <- rowMeans(df[, c("jan", "feb", "mar", "apr", "may", "jun",
+                                   "jul", "aug", "sep", "oct", "nov", "dec")],
+                            na.rm = TRUE)
+
+  df <- df |> 
+    filter(year >= 2015, year <= 2024)
+
+  sector <- get_sector_name(file)
+
+  df |> 
+    select(year, annual_avg) |> 
+    pivot_wider(names_from = year, values_from = annual_avg) |> 
+    mutate(Sector = sector) |> 
+    select(Sector, everything())
+}
+
+# Run across all files
+sector_avg_table <- bind_rows(lapply(file_paths, extract_annual_avg))
+
+# View result
+print(sector_avg_table)
+
+```
+
+```{r}
+
+```
+
+
+
