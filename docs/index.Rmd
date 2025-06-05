@@ -5,13 +5,34 @@ date: "2025-06-03"
 author: "Ava Hu"
 ---
 
+### Introduction
+
+This project investigates how Houston’s job market deviates from the broader Texas economy—both in terms of wages and employment structure. Using occupational wage and employment statistics from the U.S. Bureau of Labor Statistics, I examine disparities in pay, job concentration, and industry-level growth over the past decade.
+
+The analysis focuses on the following key questions:
+
+-   **Which occupations in Houston are underpaid compared to the Texas average?**\
+    I identify jobs where workers in Houston earn less than their statewide counterparts—and how widespread those roles are.
+
+-   **Which low-wage jobs employ the most people in Houston?**\
+    Some of the city’s most common jobs, such as food service or customer support, also offer wages below the state average.
+
+-   **Are there high-paying jobs that are rare in Houston?**\
+    I rank the most well-compensated roles that have surprisingly low local employment.
+
+-   **Which sectors are growing or shrinking in Houston?**\
+    Using monthly data from 2015 to 2024, I calculate annual average employment and show which sectors are driving growth.
+
+-   **Is Houston moving away from oil?**\
+    By comparing trends in oil-linked sectors with service-oriented industries, I assess whether the city is undergoing a structural shift.
+
 ### The Data
 
 **1-Texas_OES_Report**: Based on the U.S. Bureau of Labor Statistics’ May 2024 Occupational Employment and Wage Statistics. I used statewide data across all sectors. Source: [BLS OES Research Estimates](https://www.bls.gov/oes/2024/may/oes_research_estimates.htm).
 
 **2-Houston_OES_Report**: Derived from the May 2024 OES data published by the U.S. Bureau of Labor Statistics. I downloaded the data for the Houston-Pasadena-The Woodlands, TX metro area from the [Metropolitan and Nonmetropolitan Area Table](https://www.bls.gov/oes/2024/may/oessrcma.htm#T).
 
-**3-SeriesReport**: [State and Area Employment, Hours, and Earnings (SIC)](https://data.bls.gov/PDQWeb/sa)
+**3-SeriesReport**: Based on the U.S. Bureau of Labor Statistics’ [State and Area Employment, Hours, and Earnings](https://data.bls.gov/PDQWeb/sa) (SAE) dataset. This time series data provides monthly employment figures by industry sector for specific metropolitan areas. I downloaded separate reports for five sectors within the Houston-The Woodlands-Sugar Land, TX MSA. For each sector, I used non-seasonally adjusted monthly data from 2015 to 2024. 
 
 ### Set Up
 
