@@ -11,26 +11,6 @@ date: "2025-06-06"
 author: "Ava Hu"
 ---
 
-<iframe title="Top 10 Jobs Underpaid in Houston Compared to Texas" aria-label="Range Plot" id="datawrapper-chart-FVp3S" src="https://datawrapper.dwcdn.net/FVp3S/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1">
-
-</iframe>
-
-```{=html}
-<script type="text/javascript">
-!function(){"use strict";window.addEventListener("message",(function(a){
-  if(void 0!==a.data["datawrapper-height"]){
-    var e=document.querySelectorAll("iframe");
-    for(var t in a.data["datawrapper-height"])
-      for(var r,i=0;r=e[i];i++)
-        if(r.contentWindow===a.source){
-          var d=a.data["datawrapper-height"][t]+"px";
-          r.style.height=d
-        }
-  }
-}))}();
-</script>
-```
-
 Houston is often seen as the oil capital of America, but its job market tells a more complicated story. This analysis shows that while energy jobs are shrinking, lower-paying service sector jobs are growing—and in some cases, dominating the local economy. Many of Houston’s most common occupations, like fast food workers and cashiers, earn less than the statewide average, even as they support the city’s daily life. Meanwhile, some of the highest-paid roles—like podiatrists and internal medicine physicians—are vanishingly rare.
 
 This imbalance raises a key question: Is Houston becoming a city of low-wage, high-volume work?
@@ -58,7 +38,7 @@ My analysis focuses on:
 
 **2-Houston_OES_Report**: Derived from the May 2024 OES data published by the U.S. Bureau of Labor Statistics. I downloaded the data for the Houston-Pasadena-The Woodlands, TX metro area from the [Metropolitan and Nonmetropolitan Area Table](https://www.bls.gov/oes/2024/may/oessrcma.htm#T).
 
-**3-SeriesReport**: Based on the U.S. Bureau of Labor Statistics’ [State and Area Employment, Hours, and Earnings](https://data.bls.gov/PDQWeb/sa) (SAE) dataset. This time series data provides monthly employment figures by industry sector for specific metropolitan areas. I downloaded separate reports for five sectors within the Houston-The Woodlands-Sugar Land, TX MSA. For each sector, I used non-seasonally adjusted monthly data from 2015 to 2024.
+**3-SeriesReport**: Based on the U.S. Bureau of Labor Statistics’ [State and Area Employment, Hours, and Earnings](https://data.bls.gov/PDQWeb/sm) (SAE) dataset. This time series data provides monthly employment figures by industry sector for specific metropolitan areas. I downloaded separate reports for five sectors within the Houston-The Woodlands-Sugar Land, TX MSA. For each sector, I used non-seasonally adjusted monthly data from 2015 to 2024.
 
 ### Set Up
 
@@ -184,10 +164,19 @@ Occupations that earn significantly more in Houston are medical roles.At the top
 
 </iframe>
 
-{=html}
-
 ```{=html}
-<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+<script type="text/javascript">
+!function(){"use strict";window.addEventListener("message",(function(a){
+  if(void 0!==a.data["datawrapper-height"]){
+    var e=document.querySelectorAll("iframe");
+    for(var t in a.data["datawrapper-height"])
+      for(var r,i=0;r=e[i];i++)
+        if(r.contentWindow===a.source){
+          var d=a.data["datawrapper-height"][t]+"px";
+          r.style.height=d
+        }
+  }
+}))}();
 </script>
 ```
 
@@ -225,10 +214,19 @@ The result highlights key sectors like education, construction, personal care, a
 
 </iframe>
 
-{=html}
-
 ```{=html}
-<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+<script type="text/javascript">
+!function(){"use strict";window.addEventListener("message",(function(a){
+  if(void 0!==a.data["datawrapper-height"]){
+    var e=document.querySelectorAll("iframe");
+    for(var t in a.data["datawrapper-height"])
+      for(var r,i=0;r=e[i];i++)
+        if(r.contentWindow===a.source){
+          var d=a.data["datawrapper-height"][t]+"px";
+          r.style.height=d
+        }
+  }
+}))}();
 </script>
 ```
 
