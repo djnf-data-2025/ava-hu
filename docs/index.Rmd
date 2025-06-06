@@ -11,6 +11,28 @@ date: "2025-06-06"
 author: "Ava Hu"
 ---
 
+Houston is often seen as the oil capital of America, but its job market tells a more complicated story. This analysis shows that while energy jobs are shrinking, lower-paying service sector jobs are growing—and in some cases, dominating the local economy. Many of Houston’s most common occupations, like fast food workers and cashiers, earn less than the statewide average, even as they support the city’s daily life. Meanwhile, some of the highest-paid roles—like podiatrists and internal medicine physicians—are vanishingly rare.
+
+This imbalance raises a key question: Is Houston becoming a city of low-wage, high-volume work?
+
+My analysis focuses on:
+
+-   **Which sectors are growing or shrinking in Houston?**\
+    Using monthly data from 2015 to 2024, I calculate annual average employment and show which sectors are driving growth.
+
+-   **Is Houston moving away from oil?**\
+    By comparing trends in oil-linked sectors with service-oriented industries, I assess whether the city is undergoing a structural shift.
+
+-   **Which occupations in Houston are underpaid compared to the Texas average?**\
+    I identify jobs where workers in Houston earn less than their statewide counterparts—and how widespread those roles are.
+
+-   **Which low-wage jobs employ the most people in Houston?**\
+    Some of the city’s most common jobs, such as food service or customer support, also offer wages below the state average.
+
+-   **Are there high-paying jobs that are rare in Houston?**\
+    I rank the most well-compensated roles that have surprisingly low local employment.
+
+
 ```{r, results='asis', echo=FALSE}
 cat('
 <iframe src="https://datawrapper.dwcdn.net/FVp3S/6/" style="width:100%; height:400px; border:none;" frameborder="0" scrolling="no"></iframe>
@@ -43,28 +65,7 @@ cat('
 ```
 
 
-
-Houston is often seen as the oil capital of America, but its job market tells a more complicated story. This analysis shows that while energy jobs are shrinking, lower-paying service sector jobs are growing—and in some cases, dominating the local economy. Many of Houston’s most common occupations, like fast food workers and cashiers, earn less than the statewide average, even as they support the city’s daily life. Meanwhile, some of the highest-paid roles—like podiatrists and internal medicine physicians—are vanishingly rare.
-
-This imbalance raises a key question: Is Houston becoming a city of low-wage, high-volume work?
-
-My analysis focuses on:
-
--   **Which sectors are growing or shrinking in Houston?**\
-    Using monthly data from 2015 to 2024, I calculate annual average employment and show which sectors are driving growth.
-
--   **Is Houston moving away from oil?**\
-    By comparing trends in oil-linked sectors with service-oriented industries, I assess whether the city is undergoing a structural shift.
-
--   **Which occupations in Houston are underpaid compared to the Texas average?**\
-    I identify jobs where workers in Houston earn less than their statewide counterparts—and how widespread those roles are.
-
--   **Which low-wage jobs employ the most people in Houston?**\
-    Some of the city’s most common jobs, such as food service or customer support, also offer wages below the state average.
-
--   **Are there high-paying jobs that are rare in Houston?**\
-    I rank the most well-compensated roles that have surprisingly low local employment.
-
+## R Markdown
 #### The Data
 
 **1-Texas_OES_Report**: Based on the U.S. Bureau of Labor Statistics’ May 2024 Occupational Employment and Wage Statistics. I used statewide data across all sectors. Source: [BLS OES Research Estimates](https://www.bls.gov/oes/2024/may/oes_research_estimates.htm).
