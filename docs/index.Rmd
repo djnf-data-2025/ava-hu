@@ -11,26 +11,6 @@ date: "2025-06-06"
 author: "Ava Hu"
 ---
 
-if (knitr::is_html_output()) { cat(' <iframe title="Top 10 Jobs Underpaid in Houston Compared to Texas" aria-label="Range Plot" id="datawrapper-chart-FVp3S" src="https://datawrapper.dwcdn.net/FVp3S/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe>
-
-```{=html}
-<script type="text/javascript">
-!function(){"use strict";window.addEventListener("message",(function(a){
-  if(void 0!==a.data["datawrapper-height"]){
-    var e=document.querySelectorAll("iframe");
-    for(var t in a.data["datawrapper-height"])
-      for(var r,i=0;r=e[i];i++)
-        if(r.contentWindow===a.source){
-          var d=a.data["datawrapper-height"][t]+"px";
-          r.style.height=d
-        }
-  }
-}))}();
-</script>
-```
-
-') }
-
 ```{r}
 if (knitr::is_html_output()) {
   cat('
