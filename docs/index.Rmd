@@ -5,6 +5,13 @@ date: "2025-06-03"
 author: "Ava Hu"
 ---
 
+
+Houston is often seen as the oil capital of America, but its job market tells a more complicated story. This analysis shows that while energy jobs are shrinking, lower-paying service sector jobs are growing—and in some cases, dominating the local economy. Many of Houston’s most common occupations, like fast food workers and cashiers, earn less than the statewide average, even as they support the city’s daily life. Meanwhile, some of the highest-paid roles—like podiatrists and internal medicine physicians—are vanishingly rare. 
+
+This imbalance raises a key question: Is Houston becoming a city of low-wage, high-volume work?
+
+
+
 ### Introduction
 
 This project investigates how Houston’s job market deviates from the broader Texas economy—both in terms of wages and employment structure. Using occupational wage and employment statistics from the U.S. Bureau of Labor Statistics, I examine disparities in pay, job concentration, and industry-level growth over the past decade.
