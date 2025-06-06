@@ -36,6 +36,25 @@ My analysis focuses on:
 ## Which Sectors Are Growing in Houston? 
 
 
+<iframe title="Energy Sector Employment in Houston" aria-label="Interactive line chart" id="datawrapper-chart-zqLUq" src="https://datawrapper.dwcdn.net/zqLUq/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="466" data-external="1"></iframe>
+
+```{r, results='asis', echo=FALSE}
+cat('
+<script type="text/javascript">
+!function(){"use strict";window.addEventListener("message",(function(a){
+  if(void 0!==a.data["datawrapper-height"]){
+    var e=document.querySelectorAll("iframe");
+    for(var t in a.data["datawrapper-height"])
+      for(var r,i=0;r=e[i];i++)
+        if(r.contentWindow===a.source){
+          var d=a.data["datawrapper-height"][t]+"px";
+          r.style.height=d
+        }
+  }
+}))}();
+</script>
+')
+```
 
 ```{r, results='asis', echo=FALSE}
 cat('
@@ -76,7 +95,7 @@ cat('
 
 **2-Houston_OES_Report**: Derived from the May 2024 OES data published by the U.S. Bureau of Labor Statistics. I downloaded the data for the Houston-Pasadena-The Woodlands, TX metro area from the [Metropolitan and Nonmetropolitan Area Table](https://www.bls.gov/oes/2024/may/oessrcma.htm#T).
 
-**3-SeriesReport**: Based on the U.S. Bureau of Labor Statistics’ [State and Area Employment, Hours, and Earnings](https://data.bls.gov/PDQWeb/sm) (SAE) dataset. This time series data provides monthly employment figures by industry sector for specific metropolitan areas. I downloaded separate reports for five sectors within the Houston-The Woodlands-Sugar Land, TX MSA. For each sector, I used non-seasonally adjusted monthly data from 2015 to 2024.
+**3-SeriesReport**: Based on the U.S. Bureau of Labor Statistics’ [State and Area Employment, Hours, and Earnings](https://www.bls.gov/data/#employment) (SAE) dataset. This time series data provides monthly employment figures by industry sector for specific metropolitan areas. I downloaded separate reports for five sectors within the Houston-The Woodlands-Sugar Land, TX MSA. For each sector, I used non-seasonally adjusted monthly data from 2015 to 2024.
 
 ### Set Up
 
@@ -192,6 +211,9 @@ ggplot(trend_pct, aes(x = year, y = pct_change, color = industry)) +
 ## Is Houston moving away from Oil? 
 Although Houston has long been known as an oil capital, the city’s job market is shifting away from its energy roots. Between 2015 and 2024, employment in Mining, Logging, and Construction fell by 1.9%, making it the only major sector to experience a net decline over the decade. In contrast, service-oriented industries have seen substantial growth.
 
+	All Employees, In Thousands
+
+
 ```{r}
 data_path <- "~/Documents/GitHub/ava-hu/data/oil"
 files <- list.files(data_path, pattern = "\\.xlsx$", full.names = TRUE)
@@ -213,6 +235,7 @@ read_bls_file_with_label <- function(file) {
 oil_data <- map_dfr(files, read_bls_file_with_label)
 
 ```
+
 
 ```{r}
 library(ggplot2)
