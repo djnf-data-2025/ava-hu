@@ -1,24 +1,16 @@
 
-/* TOC item styles */
-.tocify .tocify-item {
-  color: white !important;
-  font-size: 15px;
-  padding: 8px 12px;
-  margin-bottom: 6px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+/* 改变目录中链接文字颜色 */
+div.tocify .tocify-item {
+  color: black !important;
 }
 
-/* Hover effect */
-.tocify .tocify-item:hover {
-  background-color: #2E3D66 !important;
-  color: #F9C349 !important;
+/* 选中状态高亮色（可选） */
+div.tocify .tocify-item.active {
+  background-color: #F9C349 !important;
+  color: black !important;
 }
 
-/* Active section highlight */
-.tocify .tocify-item.active {
-  backgrou
-
+/* 正文中某些强调内容颜色 */
 .highlight-yellow {
   color: #F9C349;
   font-weight: bold;

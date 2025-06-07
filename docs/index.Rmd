@@ -14,7 +14,7 @@ author: "Ava Hu"
 
 Houston is often seen as the oil capital of America, but its job market tells a more complicated story. This analysis shows that while energy jobs are shrinking, lower-paying service sector jobs are growing—and in some cases, dominating the local economy. Many of Houston’s most common occupations, like fast food workers and cashiers, earn less than the statewide average, even as they support the city’s daily life. Meanwhile, some of the highest-paid roles—like podiatrists and internal medicine physicians—are vanishingly rare.
 
-This imbalance raises a key question:  <span class="highlight-yellow">Is Houston becoming a city of low-wage, high-volume work?</span>
+This imbalance raises a key question: [Is Houston becoming a city of low-wage, high-volume work?]{.highlight-yellow}
 
 My analysis focuses on:
 
@@ -24,7 +24,7 @@ My analysis focuses on:
 -   **Is Houston moving away from oil?**\
     By comparing trends in oil-linked sectors with service-oriented industries, I assess whether the city is undergoing a structural shift.
 
--   **Which occupations in Houston are underpaid compared to the Texas average?**\
+-   **Which occupations in Houston are underpaid/Overpaid compared to the Texas average?**\
     I identify jobs where workers in Houston earn less than their statewide counterparts—and how widespread those roles are.
 
 -   **Which low-wage jobs employ the most people in Houston?**\
@@ -33,15 +33,62 @@ My analysis focuses on:
 -   **Are there high-paying jobs that are rare in Houston?**\
     I rank the most well-compensated roles that have surprisingly low local employment.
 
+## The Data
+
+**1-Texas_OES_Report**: Based on the U.S. Bureau of Labor Statistics’ May 2024 Occupational Employment and Wage Statistics. I used statewide data across all sectors. Source: [BLS OES Research Estimates](https://www.bls.gov/oes/2024/may/oes_research_estimates.htm).
+
+**2-Houston_OES_Report**: Derived from the May 2024 OES data published by the U.S. Bureau of Labor Statistics. I downloaded the data for the Houston-Pasadena-The Woodlands, TX metro area from the [Metropolitan and Nonmetropolitan Area Table](https://www.bls.gov/oes/2024/may/oessrcma.htm#T).
+
+**3-SeriesReport**: Based on the U.S. Bureau of Labor Statistics’ [State and Area Employment, Hours, and Earnings](https://www.bls.gov/data/#employment) (SAE) dataset. This time series data provides monthly employment figures by industry sector for specific metropolitan areas. I downloaded separate reports for five sectors within the Houston-The Woodlands-Sugar Land, TX MSA. For each sector, I used non-seasonally adjusted monthly data from 2015 to 2024.
+
+
 ## Which Sectors Are Growing in Houston?
 
+To understand long-term employment trends in Houston, I collected monthly employment data from 2015 to 2024 for the city’s five largest sectors. I calculated the annual average employment for each sector by averaging monthly figures from January to December. Because the size of each sector differs significantly, I used percentage change to show year-over-year trends. The calculation process can be found in the markdown section.
 
-<iframe title="Percentage Change in Employment by Sector " aria-label="Interactive line chart" id="datawrapper-chart-RNfkh" src="https://datawrapper.dwcdn.net/RNfkh/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="471" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+
+<iframe title="Percentage Change in Employment by Sector " aria-label="Interactive line chart" id="datawrapper-chart-RNfkh" src="https://datawrapper.dwcdn.net/RNfkh/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="471" data-external="1">
+
+The chart above shows how employment in these five industries has evolved over the past decade. [Mining, Logging, and Construction]{.highlight-yellow}—which largely represents the city’s oil and energy sector—is the only industry that experienced a consistent decline, with employment falling by nearly 2% since 2015. 
+
+In contrast, [Education and Health Services]{.highlight-yellow} grew the fastest, with a cumulative increase of more than 25%, signaling a broader shift toward service-oriented employment. Leisure and Hospitality, as well as Service-Providing sectors, also saw strong growth of 21.2% and 18.5% respectively. Retail Trade increased at a slower pace, rising by 6.9% over the same period.
+
+Together, these trends suggest that while energy remains a central part of Houston’s identity, the city’s job market is increasingly defined by growth in education, healthcare, and service-related industries.
+
+## Is Houston moving away from Oil?
+
+To verify whether Houston’s energy sector is truly in long-term decline, I examined the three subsectors under “Mining, Logging, and Construction”: Mining and Logging, Oil and Gas Extraction, and Support Activities for Mining. I downloaded monthly employment data from 2015 to 2025 for each subsector and combined them using R. The resulting stacked area chart illustrates a clear downward trend across all three components. 
+
+[No single subsector is solely responsible for the decline—employment is shrinking across the board.]{.highlight-yellow}
+
+
+</iframe>
+
+```{=html}
+<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
+```
+
+<iframe title="Energy Sector Employment in Houston" aria-label="Interactive area chart" id="datawrapper-chart-zqLUq" src="https://datawrapper.dwcdn.net/zqLUq/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="466" data-external="1">
+
+While this sector still employs more workers than most others combined, the decline is undeniable. As the Houston Chronicle reports, the waning is mainly caused by industry consolidates and slashes its spending.
+
+Major oil companies like Shell and ExxonMobil are now spending 67% less on exploration than they did in 2013. In Houston, the impact of these cuts is already being felt.
+
+## Which occupations in Houston are underpaid/overpaid compared to the Texas average?
 
 
-<iframe title="Energy Sector Employment in Houston" aria-label="Interactive area chart" id="datawrapper-chart-zqLUq" src="https://datawrapper.dwcdn.net/zqLUq/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="466" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+
+</iframe>
+
+```{=html}
+<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
+```
+
+The top 10 underpaid jobs in Houston show relatively small wage differences, typically less than \$3/hour, with the largest gap seen in sales and related occupations, where Houston workers earn about \$7.36/hour less than their statewide counterparts. The rest of the list includes fast food workers, construction laborers, cashiers, stockers, and customer service representatives, all of whom experience minor pay disadvantages compared to the Texas average.
+
+Occupations that earn significantly more in Houston are medical roles.At the top of the list are pathologists, who earn \$135.66/hour in Houston—nearly \$47/hour more than the statewide average. Other medical professions such as ophthalmologists, internal medicine physicians, dentists, and podiatrists also earn over \$20/hour more in Houston than in Texas overall.
 
 
 ```{r, results='asis', echo=FALSE}
@@ -77,15 +124,6 @@ cat('
 
 ## R Markdown
 
-#### The Data
-
-**1-Texas_OES_Report**: Based on the U.S. Bureau of Labor Statistics’ May 2024 Occupational Employment and Wage Statistics. I used statewide data across all sectors. Source: [BLS OES Research Estimates](https://www.bls.gov/oes/2024/may/oes_research_estimates.htm).
-
-**2-Houston_OES_Report**: Derived from the May 2024 OES data published by the U.S. Bureau of Labor Statistics. I downloaded the data for the Houston-Pasadena-The Woodlands, TX metro area from the [Metropolitan and Nonmetropolitan Area Table](https://www.bls.gov/oes/2024/may/oessrcma.htm#T).
-
-**3-SeriesReport**: Based on the U.S. Bureau of Labor Statistics’ [State and Area Employment, Hours, and Earnings](https://www.bls.gov/data/#employment) (SAE) dataset. This time series data provides monthly employment figures by industry sector for specific metropolitan areas. I downloaded separate reports for five sectors within the Houston-The Woodlands-Sugar Land, TX MSA. For each sector, I used non-seasonally adjusted monthly data from 2015 to 2024.
-
-### Set Up
 
 ```{r}
 library(tidyverse)
@@ -94,13 +132,7 @@ library(readxl)
 library(rvest)
 ```
 
-## Which Sectors Are Growing in Houston? (2015–2024)
-
-To understand long-term employment trends, I wanted a clearer picture than a single month could provide. So I calculated the annual average employment for each sector, using monthly data from January through December.
-
-I pulled in five key sectors that identified above: Mining, Logging, and Construction; Service-Providing; Leisure and Hospitality; Retail Trade and Education and Health Services from the Bureau of Labor Statistics, cleaned the data, and averaged the twelve monthly values for each year from 2015 to 2024.
-
-The result is a table that shows, year by year, how many people were employed in each sector on average—giving a more stable view of how Houston’s job market is shifting across industries.
+### Which Sectors Are Growing in Houston? 
 
 ```{r}
 # Set your data folder path
@@ -200,9 +232,6 @@ ggplot(trend_pct, aes(x = year, y = pct_change, color = industry)) +
 
 Although Houston has long been known as an oil capital, the city’s job market is shifting away from its energy roots. Between 2015 and 2024, employment in Mining, Logging, and Construction fell by 1.9%, making it the only major sector to experience a net decline over the decade. In contrast, service-oriented industries have seen substantial growth.
 
-```         
-All Employees, In Thousands
-```
 
 ```{r}
 data_path <- "~/Documents/GitHub/ava-hu/data/oil"
