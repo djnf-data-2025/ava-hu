@@ -45,7 +45,9 @@ My analysis focuses on:
 
 To understand long-term employment trends in Houston, I collected monthly employment data from 2015 to 2024 for the city’s five largest sectors. I calculated the annual average employment for each sector by averaging monthly figures from January to December. Because the size of each sector differs significantly, I used percentage change to show year-over-year trends. The calculation process can be found in the markdown section.
 
-<iframe title="Percentage Change in Employment by Sector " aria-label="Interactive line chart" id="datawrapper-chart-RNfkh" src="https://datawrapper.dwcdn.net/RNfkh/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="471" data-external="1"></iframe>
+<iframe title="Percentage Change in Employment by Sector " aria-label="Interactive line chart" id="datawrapper-chart-RNfkh" src="https://datawrapper.dwcdn.net/RNfkh/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="471" data-external="1">
+
+</iframe>
 
 The chart above shows how employment in these five industries has evolved over the past decade. [Mining, Logging, and Construction]{.highlight-yellow}—which largely represents the city’s oil and energy sector—is the only industry that experienced a consistent decline, with employment falling by nearly 2% since 2015.
 
@@ -59,13 +61,18 @@ To verify whether Houston’s energy sector is truly in long-term decline, I exa
 
 [No single subsector is solely responsible for the decline—employment is shrinking across the board.]{.highlight-yellow}
 
-<iframe title="Energy Sector Employment in Houston" aria-label="Interactive area chart" id="datawrapper-chart-zqLUq" src="https://datawrapper.dwcdn.net/zqLUq/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="466" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
-</script> 
+<iframe title="Energy Sector Employment in Houston" aria-label="Interactive area chart" id="datawrapper-chart-zqLUq" src="https://datawrapper.dwcdn.net/zqLUq/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="466" data-external="1">
+
+</iframe>
+
+```{=html}
+<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+```
 
 While this sector still employs more workers than most others combined, the decline is undeniable. As the Houston Chronicle reports, the waning is mainly caused by industry consolidates and slashes its spending.
 
-Major oil companies like Shell and ExxonMobil are now spending 67% less on exploration than they did in 2013. In Houston, the impact of these cuts is already being felt.
-
+[Reports of Shell layoffs point to 10-year trend that cost Houston 60,000 jobs and counting](https://www.houstonchronicle.com/news/investigations/article/shell-houston-oil-gas-job-losses-19742282.php): Major oil companies like Shell and ExxonMobil are now spending 67% less on exploration than they did in 2013. In Houston, the impact of these cuts is already being felt.
 
 ## Wage Gaps！
 
@@ -73,18 +80,15 @@ To assess whether Houston is becoming a city of low-wage, high-volume work, it�
 
 Hourly mean wage is the core metric here. I joined the two datasets by SOC (Standard Occupational Classification) code. Since the Texas data breaks down some occupations by industry, I calculated the average hourly wage across all industries for each SOC code and summed the total employment to ensure a fair comparison. The full calculation process is documented in the markdown section below.
 
-
 ```{r, results='asis', echo=FALSE}
 cat('
 <iframe src="https://datawrapper.dwcdn.net/FVp3S/6/" style="width:100%; height:400px; border:none;" frameborder="0" scrolling="no"></iframe>
 ')
 ```
 
-
-
 The top 10 underpaid jobs in Houston show [relatively small wage differences]{.highlight-yellow}, typically less than \$3/hour, with the largest gap seen in sales and related occupations, where Houston workers earn about \$7.36/hour less than their statewide counterparts. The rest of the list includes fast food workers, construction laborers, cashiers, stockers, and customer service representatives, all of whom experience minor pay disadvantages compared to the Texas average.
 
-Occupations that earn significantly more in Houston are medical roles.At the top of the list are pathologists, who earn \$135.66/hour in Houston—nearly \$47/hour more than the statewide average. Other medical professions such as ophthalmologists, internal medicine physicians, dentists, and podiatrists also earn over \$20/hour more in Houston than in Texas overall.
+Occupations that earn significantly more in Houston are medical roles. At the top of the list are pathologists, who earn \$135.66/hour in Houston—nearly \$47/hour more than the statewide average. Other medical professions such as ophthalmologists, internal medicine physicians, dentists, and podiatrists also earn over \$20/hour more in Houston than in Texas overall.
 
 ## Low-Wage, High-Employment
 
@@ -116,10 +120,8 @@ cat('
 </script>
 ')
 ```
-
-
-The result highlights key sectors like [education, construction, personal care, and retail—jobs]{.highlight-yellow} that support the city’s infrastructure and everyday life, yet often offer relatively low pay. Nearly 196,000 people work in education in Houston, earning an average of \$31.14 per hour, \$15 below the statewide average.
-
+<b></b>
+The result highlights key sectors like [food services, construction, personal care, and retail—jobs]{.highlight-yellow} that support the city’s infrastructure and everyday life, yet often offer relatively low pay. Nearly 196,000 people work in education in Houston, earning an average of \$31.14 per hour, \$15 below the statewide average.
 
 ## High Pay, Low Headcount
 
@@ -136,10 +138,7 @@ cat('
 ')
 ```
 
-
-But hey: Media and Communication Equipment Workers turned out to be not only rare, but also pretty well paid in Houston. In fact, their wage gap is second only to podiatrists. 
-
-
+But hey: Media and Communication Equipment Workers turned out to be not only rare, but also pretty well paid in Houston. In fact, their wage gap is second only to podiatrists.
 
 ## R Markdown
 
@@ -409,7 +408,6 @@ print(top10_low_paid_high_employment)
 
 ```
 
-
 ### Higher wages low employment
 
 ```{r}
@@ -435,9 +433,7 @@ print(top10_high_paid_low_employment)
 
 ```
 
-
 ```{=html}
 <script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
 ```
-
