@@ -1,5 +1,5 @@
 ---
-title: "How Houston’s Job Market Deviates From the Texas Norm"
+title: "From Oil to Undervaluation: Wage and Employment Trends in Houston"
 output:
   html_document:
     toc: true
@@ -80,11 +80,13 @@ cat('
 ')
 ```
 
-The top 10 underpaid jobs in Houston show relatively small wage differences, typically less than \$3/hour, with the largest gap seen in sales and related occupations, where Houston workers earn about \$7.36/hour less than their statewide counterparts. The rest of the list includes fast food workers, construction laborers, cashiers, stockers, and customer service representatives, all of whom experience minor pay disadvantages compared to the Texas average.
+
+
+The top 10 underpaid jobs in Houston show [relatively small wage differences]{.highlight-yellow}, typically less than \$3/hour, with the largest gap seen in sales and related occupations, where Houston workers earn about \$7.36/hour less than their statewide counterparts. The rest of the list includes fast food workers, construction laborers, cashiers, stockers, and customer service representatives, all of whom experience minor pay disadvantages compared to the Texas average.
 
 Occupations that earn significantly more in Houston are medical roles.At the top of the list are pathologists, who earn \$135.66/hour in Houston—nearly \$47/hour more than the statewide average. Other medical professions such as ophthalmologists, internal medicine physicians, dentists, and podiatrists also earn over \$20/hour more in Houston than in Texas overall.
 
-## Low-Wage, High-Employment Jobs
+## Low-Wage, High-Employment
 
 Beyond wage extremes, it's worth asking: Which low-paid jobs in Houston employ the most people?
 
@@ -115,12 +117,25 @@ cat('
 ')
 ```
 
+
 The result highlights key sectors like [education, construction, personal care, and retail—jobs]{.highlight-yellow} that support the city’s infrastructure and everyday life, yet often offer relatively low pay. Nearly 196,000 people work in education in Houston, earning an average of \$31.14 per hour, \$15 below the statewide average.
 
 
 ## High Pay, Low Headcount
 
 Just for fun, I looked at jobs where the average hourly wage in Houston is higher than the state average but have very few people employed, then ranked them by how many people actually work in those roles locally. I pulled out the 10 least common ones—and it turns out most of them are super niche, with only 30 to 70 people employed in the entire metro area.
+
+```{r, results='asis', echo=FALSE}
+cat('
+<div class="flourish-embed flourish-bubble-chart" data-src="visualisation/23592346">
+  <script src="https://public.flourish.studio/resources/embed.js"></script>
+  <noscript>
+    <img src="https://public.flourish.studio/visualisation/23592346/thumbnail" width="100%" alt="bubble-chart visualization" />
+  </noscript>
+</div>
+')
+```
+
 
 But hey: Media and Communication Equipment Workers turned out to be not only rare, but also pretty well paid in Houston. In fact, their wage gap is second only to podiatrists. 
 
@@ -135,7 +150,7 @@ library(readxl)
 library(rvest)
 ```
 
-### Which Sectors Are Growing in Houston?
+### R-Growing Sectors
 
 ```{r}
 # Set your data folder path
@@ -231,9 +246,7 @@ ggplot(trend_pct, aes(x = year, y = pct_change, color = industry)) +
 
 ```
 
-## Is Houston moving away from Oil?
-
-Although Houston has long been known as an oil capital, the city’s job market is shifting away from its energy roots. Between 2015 and 2024, employment in Mining, Logging, and Construction fell by 1.9%, making it the only major sector to experience a net decline over the decade. In contrast, service-oriented industries have seen substantial growth.
+### Decline of Oil?
 
 ```{r}
 data_path <- "~/Documents/GitHub/ava-hu/data/oil"
@@ -271,11 +284,9 @@ oil_data |>
 
 ```
 
-### UPLOAD & CLEAN DATA
+### R-Wage Gaps
 
-#### Houston OES Data
-
-This dataset includes wage and employment information for each occupation in the Houston-The Woodlands-Sugar Land metropolitan area.
+UPLOAD & CLEAN DATA: Houston OES Data - This dataset includes wage and employment information for each occupation in the Houston-The Woodlands-Sugar Land metropolitan area.
 
 ```{r}
 houston_clean <- read_excel("../data/houston_OES_Report.xlsx", skip = 5) |> 
@@ -289,7 +300,7 @@ houston_clean <- read_excel("../data/houston_OES_Report.xlsx", skip = 5) |>
 
 ```
 
-#### Texas OES Data
+Texas OES Data
 
 This dataset contains overall Texas occupational employment and wage estimates. We'll clean and align it to match the Houston dataset format.
 
@@ -313,9 +324,7 @@ texas_clean <- texas |>
   )
 ```
 
-### MERGE & COMPARE
-
-Join the two datasets by SOC code, then calculate wage gaps and prepare for analysis.
+MERGE & COMPARE: Join the two datasets by SOC code, then calculate wage gaps and prepare for analysis.
 
 ```{r}
 
@@ -327,7 +336,7 @@ wage_compare <- inner_join(
 
 ```
 
-Next, we filtered for occupations where workers in Houston earn less than their counterparts statewide. Then, we calculated the absolute wage gap and sorted the results to find the 10 largest gaps.
+Filtered for occupations where workers in Houston earn less than their counterparts statewide. Then, we calculated the absolute wage gap and sorted the results to find the 10 largest gaps.
 
 ```{r}
 
@@ -352,7 +361,7 @@ print(top10_low_paid_high_employment)
 
 ```
 
-This time, we calculated the reverse: occupations where Houston pays more than the state average. Again, we ranked them by wage difference and kept the top 10.
+The reverse: Occupations where Houston pays more than the state average. Again, we ranked them by wage difference and kept the top 10.
 
 ```{r}
 top10_houston_above_texas <- wage_compare |> 
@@ -376,17 +385,7 @@ print(top10_houston_above_texas)
 
 ```
 
-### Findings
-
-The top 10 underpaid jobs in Houston show relatively small wage differences, typically less than \$3/hour, with the largest gap seen in sales and related occupations, where Houston workers earn about \$7.36/hour less than their statewide counterparts. The rest of the list includes fast food workers, construction laborers, cashiers, stockers, and customer service representatives, all of whom experience minor pay disadvantages compared to the Texas average.
-
-Occupations that earn significantly more in Houston are medical roles.At the top of the list are pathologists, who earn \$135.66/hour in Houston—nearly \$47/hour more than the statewide average. Other medical professions such as ophthalmologists, internal medicine physicians, dentists, and podiatrists also earn over \$20/hour more in Houston than in Texas overall.
-
-### Which Low-Wage Jobs Employ the Most People in Houston?
-
-Beyond wage extremes, it's worth asking: Which low-paid jobs in Houston employ the most people?
-
-I filtered for occupations where Houston wages fall below the statewide average, then ranked by local employment.
+### Low wages high employment
 
 ```{r}
 top10_low_paid_high_employment <- wage_compare |> 
@@ -410,11 +409,8 @@ print(top10_low_paid_high_employment)
 
 ```
 
-The result highlights key sectors like education, construction, personal care, and retail—jobs that support the city’s infrastructure and everyday life, yet often offer relatively low pay. Nearly 196,000 people work in education in Houston, earning an average of \$31.14 per hour, \$15 below the statewide average.
 
-### Top 10 occupations in Houston with higher wages than the Texas average but very low employment
-
-I also looked for occupations where the average hourly wage in Houston is higher than the statewide average, then ranked them by local employment. From there, I selected the 10 least common roles.
+### Higher wages low employment
 
 ```{r}
 
@@ -439,9 +435,6 @@ print(top10_high_paid_low_employment)
 
 ```
 
-Some of the best-paying opportunities in Houston are highly specialized and relatively rare. For instance, podiatrists in Houston earn nearly \$111/hour, about \$22 more than the statewide average, but only 70 people work in that area.
-
-</iframe>
 
 ```{=html}
 <script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
