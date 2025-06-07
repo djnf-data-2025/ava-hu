@@ -32,11 +32,11 @@ My analysis focuses on:
 -   **Are there high-paying jobs that are rare in Houston?**\
     I rank the most well-compensated roles that have surprisingly low local employment.
 
+## Which Sectors Are Growing in Houston?
 
-## Which Sectors Are Growing in Houston? 
+<iframe title="Energy Sector Employment in Houston" aria-label="Interactive line chart" id="datawrapper-chart-zqLUq" src="https://datawrapper.dwcdn.net/zqLUq/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="466" data-external="1">
 
-
-<iframe title="Energy Sector Employment in Houston" aria-label="Interactive line chart" id="datawrapper-chart-zqLUq" src="https://datawrapper.dwcdn.net/zqLUq/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="466" data-external="1"></iframe>
+</iframe>
 
 ```{r, results='asis', echo=FALSE}
 cat('
@@ -87,8 +87,8 @@ cat('
 ')
 ```
 
-
 ## R Markdown
+
 #### The Data
 
 **1-Texas_OES_Report**: Based on the U.S. Bureau of Labor Statistics’ May 2024 Occupational Employment and Wage Statistics. I used statewide data across all sectors. Source: [BLS OES Research Estimates](https://www.bls.gov/oes/2024/may/oes_research_estimates.htm).
@@ -208,11 +208,14 @@ ggplot(trend_pct, aes(x = year, y = pct_change, color = industry)) +
 
 ```
 
-## Is Houston moving away from Oil? 
+
+## Is Houston moving away from Oil?
+
 Although Houston has long been known as an oil capital, the city’s job market is shifting away from its energy roots. Between 2015 and 2024, employment in Mining, Logging, and Construction fell by 1.9%, making it the only major sector to experience a net decline over the decade. In contrast, service-oriented industries have seen substantial growth.
 
-	All Employees, In Thousands
-
+```         
+All Employees, In Thousands
+```
 
 ```{r}
 data_path <- "~/Documents/GitHub/ava-hu/data/oil"
@@ -236,27 +239,6 @@ oil_data <- map_dfr(files, read_bls_file_with_label)
 
 ```
 
-
-```{r}
-library(ggplot2)
-
-ggplot(oil_data, aes(x = date, y = Employment, color = Industry)) +
-  geom_line(size = 1) +
-  labs(
-    title = "Houston Oil and Energy Industry Employment Trends",
-    subtitle = "Monthly employment levels by industry",
-    x = "Year",
-    y = "Employment (Thousands)",
-    color = "Industry"
-  ) +
-  theme_minimal(base_size = 13) +
-  theme(
-    legend.position = "top",
-    plot.title = element_text(face = "bold")
-  )
-
-```
-
 ```{r}
 oil_data |>
   mutate(Year = lubridate::year(date)) |>
@@ -266,12 +248,10 @@ oil_data |>
   group_by(Industry) |>
   mutate(change = annual_avg - lag(annual_avg)) |>
   filter(!is.na(change)) |>
-  top_n(-1, change)  # 最严重下跌的一年
+  top_n(-1, change)  
 
 
 ```
-
-
 
 ### UPLOAD & CLEAN DATA
 
@@ -414,7 +394,6 @@ print(top10_low_paid_high_employment)
 
 The result highlights key sectors like education, construction, personal care, and retail—jobs that support the city’s infrastructure and everyday life, yet often offer relatively low pay. Nearly 196,000 people work in education in Houston, earning an average of \$31.14 per hour, \$15 below the statewide average.
 
-
 ### Top 10 occupations in Houston with higher wages than the Texas average but very low employment
 
 I also looked for occupations where the average hourly wage in Houston is higher than the statewide average, then ranked them by local employment. From there, I selected the 10 least common roles.
@@ -443,6 +422,3 @@ print(top10_high_paid_low_employment)
 ```
 
 Some of the best-paying opportunities in Houston are highly specialized and relatively rare. For instance, podiatrists in Houston earn nearly \$111/hour, about \$22 more than the statewide average, but only 70 people work in that area.
-
-
-
