@@ -8,8 +8,7 @@ output:
     browser: false
     self-contained: true
     css: custom.css
-date: "2025-06-06"
-author: "Ava Hu"
+author: "Ava Hu｜[LinkedIn](https://www.linkedin.com/in/ava-hu/) ｜ [Website](https://sites.google.com/berkeley.edu/ava-hu-portfolio/home)"
 ---
 
 Houston is often seen as the oil capital of America, but its job market tells a more complicated story. This analysis shows that while energy jobs are shrinking, lower-paying service sector jobs are growing—and in some cases, dominating the local economy. Many of Houston’s most common occupations, like fast food workers and cashiers, earn less than the statewide average, even as they support the city’s daily life. Meanwhile, some of the highest-paid roles—like podiatrists and internal medicine physicians—are vanishingly rare.

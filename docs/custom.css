@@ -67,3 +67,20 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.author, .date {
+  font-weight: 400;        /* 取消加粗 */
+  color: #134f5c;          /* 深蓝色，与主色调一致 */
+  font-size: 15px;         /* 略小于正文 */
+  margin-bottom: 4px;
+}
+
+.author {
+  margin-top: 10px;
+}
+
+.header h1 + .author, 
+.header .author + .date {
+  display: inline-block;
+  margin-right: 20px;
+}
