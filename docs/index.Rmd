@@ -5,8 +5,8 @@ output:
     toc: true
     toc_depth: 4
     toc_float: true
-    self-contained: false
     browser: false
+    self-contained: true
     css: custom.css
 date: "2025-06-06"
 author: "Ava Hu"
