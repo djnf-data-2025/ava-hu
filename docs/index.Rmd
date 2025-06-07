@@ -7,6 +7,7 @@ output:
     toc_float: true
     self-contained: false
     browser: false
+    css: custom.css
 date: "2025-06-06"
 author: "Ava Hu"
 ---
@@ -33,6 +34,11 @@ My analysis focuses on:
     I rank the most well-compensated roles that have surprisingly low local employment.
 
 ## Which Sectors Are Growing in Houston?
+
+
+<iframe title="Percentage Change in Employment by Sector " aria-label="Interactive line chart" id="datawrapper-chart-RNfkh" src="https://datawrapper.dwcdn.net/RNfkh/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="471" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
+</script>
+
 
 <iframe title="Energy Sector Employment in Houston" aria-label="Interactive line chart" id="datawrapper-chart-zqLUq" src="https://datawrapper.dwcdn.net/zqLUq/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="466" data-external="1">
 
@@ -207,7 +213,6 @@ ggplot(trend_pct, aes(x = year, y = pct_change, color = industry)) +
   theme_minimal()
 
 ```
-
 
 ## Is Houston moving away from Oil?
 

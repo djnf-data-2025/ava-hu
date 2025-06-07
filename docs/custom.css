@@ -1,0 +1,21 @@
+/* 改变目录标题栏背景色 */
+div.tocify {
+  background-color: #1E2D50 !important;
+}
+
+/* 改变目录中链接文字颜色 */
+div.tocify .tocify-item {
+  color: white !important;
+}
+
+/* 选中状态高亮色（可选） */
+div.tocify .tocify-item.active {
+  background-color: #F9C349 !important;
+  color: black !important;
+}
+
+/* 正文中某些强调内容颜色 */
+.markdown-body .highlight-yellow {
+  color: #F9C349;
+  font-weight: bold;
+}
