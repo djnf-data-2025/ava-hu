@@ -14,7 +14,7 @@ author: "Ava Hu"
 
 Houston is often seen as the oil capital of America, but its job market tells a more complicated story. This analysis shows that while energy jobs are shrinking, lower-paying service sector jobs are growing—and in some cases, dominating the local economy. Many of Houston’s most common occupations, like fast food workers and cashiers, earn less than the statewide average, even as they support the city’s daily life. Meanwhile, some of the highest-paid roles—like podiatrists and internal medicine physicians—are vanishingly rare.
 
-This imbalance raises a key question: Is Houston becoming a city of low-wage, high-volume work?
+This imbalance raises a key question:  <span class="highlight-yellow">Is Houston becoming a city of low-wage, high-volume work?</span>
 
 My analysis focuses on:
 
@@ -40,27 +40,9 @@ My analysis focuses on:
 </script>
 
 
-<iframe title="Energy Sector Employment in Houston" aria-label="Interactive line chart" id="datawrapper-chart-zqLUq" src="https://datawrapper.dwcdn.net/zqLUq/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="466" data-external="1">
-
-</iframe>
-
-```{r, results='asis', echo=FALSE}
-cat('
-<script type="text/javascript">
-!function(){"use strict";window.addEventListener("message",(function(a){
-  if(void 0!==a.data["datawrapper-height"]){
-    var e=document.querySelectorAll("iframe");
-    for(var t in a.data["datawrapper-height"])
-      for(var r,i=0;r=e[i];i++)
-        if(r.contentWindow===a.source){
-          var d=a.data["datawrapper-height"][t]+"px";
-          r.style.height=d
-        }
-  }
-}))}();
+<iframe title="Energy Sector Employment in Houston" aria-label="Interactive area chart" id="datawrapper-chart-zqLUq" src="https://datawrapper.dwcdn.net/zqLUq/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="466" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
-')
-```
+
 
 ```{r, results='asis', echo=FALSE}
 cat('
